@@ -1,0 +1,3 @@
+This app is a quick note making tool for collecting information about any given topic particularly programming technologies. The main reason for this app was the continuous information being collected either from docs, tutorials and sometimes online forums like Stack Overflow. These topics can be of different difficulty and so creating a blog does not seem feasible. The best way to put all this information together is by adding little notes on these little topics and connect them under a topic/subject.
+
+The front-end for the app is built using AngularJS. The back-end is using NodeJS and MongoDB. Therefore, the entire project is built with JavaScript.
