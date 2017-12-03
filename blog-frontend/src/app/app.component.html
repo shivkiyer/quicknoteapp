@@ -1,4 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <h1>Quick Note App</h1>
 
-<p>Click <a href="http://localhost:3000/home">here</a> to see an output on the backend console.</p>
+<h2 class="url-link"
+    (click)="viewTopics($event)"
+    #headerLink>
+    View archived topics
+</h2>
+
+<ol class="topic-listing"
+    (clickEvent)="headerClicked=true"
+    *ngIf="topicList.length>0&&displaySub">
+  <li *ngFor="let topic of topicList">
+    {{ topic }}
+  </li>
+</ol>
+
+<p class="topic-message"
+    (clickEvent)="headerClicked=true"
+    *ngIf="topicList.length===0&&displaySub">
+    No topics to display.
+</p>
+
+<br>
+<button class="general-button"
+        type="button"
+        name="add-topic">
+        Add topic
+</button>
