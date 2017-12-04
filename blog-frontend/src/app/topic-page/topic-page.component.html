@@ -1,0 +1,34 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h1>Quick Note App</h1>
+
+<h2 class="url-link"
+    (click)="viewTopics()">
+    View archived topics
+</h2>
+
+<ol class="topic-listing"
+    (clickEvent)="headerClicked=true"
+    *ngIf="topicList.length>0&&displaySub">
+  <li *ngFor="let topic of topicList">
+    {{ topic }}
+  </li>
+</ol>
+
+<p class="topic-message"
+    (clickEvent)="headerClicked=true"
+    *ngIf="topicList.length===0&&displaySub">
+    No topics to display.
+</p>
+
+<br>
+<button class="general-button"
+        type="button"
+        name="add-topic"
+        (click)=addNewTopic()
+        *ngIf="!newTopic">
+        Add topic
+</button>
+
+<form class="" method="post">
+
+</form>

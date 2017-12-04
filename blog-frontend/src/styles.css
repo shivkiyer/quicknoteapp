@@ -46,10 +46,21 @@ h1 {
 
 .topic-listing {
   margin: 0;
-  font-size: 150%;
-  line-height: 150%;
+  font-size: 125%;
+  line-height: 175%;
 }
 
 .topic-listing li {
-  margin-left: 10px;
+  margin-left: 20px;
+}
+
+.topic-listing li::before {
+  content: "";
+  width: 10px;
+  display: inline-block;
+}
+
+.topic-message {
+  font-size: 125%;
+  margin-left: 20px;
 }

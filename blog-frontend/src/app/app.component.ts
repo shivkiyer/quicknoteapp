@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,18 +6,5 @@ import { Component, ViewChild, ElementRef, EventEmitter } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('headerLink') headerLink: ElementRef;
-  clickEvent = new EventEmitter<boolean>();
   title = 'app';
-  displaySub = false;
-
-  topicList = [];
-
-  viewTopics(event: Event) {
-    this.topicList = ["a", "b", "c"];
-    console.log(this.headerLink);
-    this.clickEvent.emit(true);
-    this.displaySub = true;
-    console.log('event', event);
-  }
 }
