@@ -29,6 +29,4 @@
         Add topic
 </button>
 
-<form class="" method="post">
-
-</form>
+<app-topic-form *ngIf="newTopic" (formSubmitted)="newTopic=false"></app-topic-form>
