@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+import { TopicsService } from '../../shared/topics.service';
+
 @Component({
   selector: 'app-topic-form',
   templateUrl: './topic-form.component.html',
@@ -12,7 +14,7 @@ export class TopicFormComponent implements OnInit {
   formValue = '';
   formDone = false;
 
-  constructor() {
+  constructor(private topicsService: TopicsService) {
     this.topicForm = new FormGroup({
       'title': new FormControl('Title', Validators.required),
       'desc': new FormControl('A brief description', Validators.required)
@@ -24,6 +26,8 @@ export class TopicFormComponent implements OnInit {
 
   addNewTopic() {
     this.formValue = JSON.stringify(this.topicForm.value);
+    this.topicsService.addNewTopic({title: this.topicForm.value.title,
+                                    desc: this.topicForm.value.desc});
     this.formDone = true;
     this.formSubmitted.emit(true);
   }

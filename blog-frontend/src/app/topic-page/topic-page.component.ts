@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TopicsService } from '../shared/topics.service';
+
 @Component({
   selector: 'app-topic-page',
   templateUrl: './topic-page.component.html',
@@ -10,11 +12,12 @@ export class TopicPageComponent implements OnInit {
   displaySub = false;
   newTopic = false;
 
-  topicList = [];
+  topicList:Array<any>;
 
-  constructor() { }
+  constructor(private topicsService: TopicsService) { }
 
   ngOnInit() {
+    this.topicList = this.topicsService.topicList;
   }
 
   viewTopics() {

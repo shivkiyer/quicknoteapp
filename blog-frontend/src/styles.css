@@ -62,11 +62,11 @@ h1 {
   margin-left: 20px;
 }
 
-.topic-listing li::before {
+/*.topic-listing li::before {
   content: "";
   width: 10px;
   display: inline-block;
-}
+}*/
 
 .topic-message {
   font-size: 125%;

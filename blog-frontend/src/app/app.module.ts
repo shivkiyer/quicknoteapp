@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { TopicFormComponent } from './topic-page/topic-form/topic-form.component';
 
+import { TopicsService } from './shared/topics.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,7 @@ import { TopicFormComponent } from './topic-page/topic-form/topic-form.component
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [TopicsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

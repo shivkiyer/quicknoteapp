@@ -10,7 +10,12 @@
     (clickEvent)="headerClicked=true"
     *ngIf="topicList.length>0&&displaySub">
   <li *ngFor="let topic of topicList">
-    {{ topic }}
+    <span>
+      {{ topic.title }}
+    </span> <br>
+    <span>
+      {{ topic.desc }}
+    </span>
   </li>
 </ol>
 
