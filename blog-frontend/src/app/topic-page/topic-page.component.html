@@ -1,4 +1,3 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <h1>Quick Note App</h1>
 
 <h2 class="url-link"
@@ -6,18 +5,18 @@
     View archived topics
 </h2>
 
-<ol class="topic-listing"
-    (clickEvent)="headerClicked=true"
-    *ngIf="topicList.length>0&&displaySub">
-  <li *ngFor="let topic of topicList">
-    <span>
-      {{ topic.title }}
-    </span> <br>
-    <span>
-      {{ topic.desc }}
-    </span>
-  </li>
-</ol>
+<div class="topic-list">
+  <ol class="topic-listing"
+      (clickEvent)="headerClicked=true"
+      *ngIf="topicList.length>0&&displaySub">
+    <li *ngFor="let topic of topicList; let topicIndex = index">
+      <span class="topic-title" (click)="displayTopic(topicIndex)">
+        {{ topic.title }}
+      </span>
+      <p *ngIf="topicIndex===topicOnDisplay">{{ topic.desc }}</p>
+    </li>
+  </ol>
+</div>
 
 <p class="topic-message"
     (clickEvent)="headerClicked=true"

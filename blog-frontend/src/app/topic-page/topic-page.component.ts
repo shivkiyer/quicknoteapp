@@ -12,7 +12,8 @@ export class TopicPageComponent implements OnInit {
   displaySub = false;
   newTopic = false;
 
-  topicList:Array<any>;
+  topicList: {title: string, desc: string}[];
+  topicOnDisplay: number = -1;
 
   constructor(private topicsService: TopicsService) { }
 
@@ -21,11 +22,14 @@ export class TopicPageComponent implements OnInit {
   }
 
   viewTopics() {
-    // this.topicList = ["a", "b", "c"];
     this.displaySub = true;
   }
 
   addNewTopic() {
     this.newTopic = true;
+  }
+
+  displayTopic(topicIndex: number) {
+    this.topicOnDisplay = topicIndex;
   }
 }

@@ -1,7 +1,7 @@
 export class TopicsService {
-  topicList = [];
+  topicList: {title: string, desc: string}[] = [];
 
-  addNewTopic(topic: any) {
+  addNewTopic(topic: {title: string, desc: string}) {
     this.topicList.push(topic);
   }
 }
