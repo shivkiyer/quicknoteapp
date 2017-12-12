@@ -1,12 +1,12 @@
 var express = require('express');
+var path = require('path');
 
 var app = express();
+var rootPath = path.normalize(__dirname);
+var port = process.env.PORT || 3000;
 
-app.get('/home', (req, res) => {
-  console.log("connected to front-end");
-  res.send("Message back from the backend");
-});
+app.use(express.static(path.join(rootPath, 'dist')));
 
-app.listen(3000, () => {
-  console.log("Backend server running on port 3000");
+app.listen(port, () => {
+  console.log(`Backend server running on port ${port}`);
 });

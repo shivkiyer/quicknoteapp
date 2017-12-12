@@ -1,0 +1,32 @@
+.topic-block {
+  display: inline-block;
+}
+
+.topic-title {
+  margin-left: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.topic-title:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.topic-title:hover {
+  background-color: rgb(115, 187, 214);
+}
+
+.topic-title:link, .topic-title:visited {
+  background-color: rgb(229, 229, 229);
+}
+
+.topic-listing {
+  width: 40%;
+}
+
+li p {
+  margin-left: 20px;
+  font-size: 80%;
+  padding-left: 5px;
+}
