@@ -4,18 +4,17 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class TopicsService {
-  baseURL = 'http://localhost:3000';
   topicList: {title: string, desc: string}[] = [];
 
   constructor(private http: Http) {}
 
   addNewTopic(topic: {title: string, desc: string}) {
     this.topicList.push(topic);
-    return this.http.post(this.baseURL + '/topicsdb', topic);
+    return this.http.post('/topicsdb', topic);
   }
 
   getTopicList() {
-    this.http.get(this.baseURL + '/topicsdb').subscribe(
+    this.http.get('/topicsdb').subscribe(
       (response) => {
         // var data = response.json();
         console.log(response.json());

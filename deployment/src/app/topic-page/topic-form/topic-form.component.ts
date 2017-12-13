@@ -27,7 +27,8 @@ export class TopicFormComponent implements OnInit {
   addNewTopic() {
     this.formValue = JSON.stringify(this.topicForm.value);
     this.topicsService.addNewTopic({title: this.topicForm.value.title,
-                                    desc: this.topicForm.value.desc});
+                                    desc: this.topicForm.value.desc})
+                      .subscribe((response) => console.log(response));
     this.formDone = true;
     this.formSubmitted.emit(true);
   }

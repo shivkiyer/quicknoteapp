@@ -18,6 +18,7 @@ export class TopicPageComponent implements OnInit {
   constructor(private topicsService: TopicsService) { }
 
   ngOnInit() {
+    this.topicsService.getTopicList();
     this.topicList = this.topicsService.topicList;
   }
 
