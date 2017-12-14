@@ -22,12 +22,11 @@ var TopicSchema = new mongoose.Schema({
 var Topic = mongoose.model('Topic', TopicSchema);
 
 var app = express();
-var rootPath = path.normalize(__dirname);
-var rootPath = path.dirname(path.normalize(__dirname));
+var rootPath = path.dirname(path.dirname(path.normalize(__dirname)));
 var port = process.env.PORT;
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(rootPath, 'dist')));
+app.use(express.static(path.join(path.join(rootPath, 'client'), 'dist')));
 
 
 app.post('/topicsdb/', (req, res) => {

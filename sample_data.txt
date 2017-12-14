@@ -1,0 +1,9 @@
+{
+	"title": "Angular",
+	"desc": "Angular is a front-end technology based on TypeScript/JavaScript used to build single-page applications (SPAs)."
+}
+
+{
+	"title": "Node JS",
+	"desc": "Node JS is a back-end technology based on JavaScript used to access databases."
+}
