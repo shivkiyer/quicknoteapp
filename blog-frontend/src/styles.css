@@ -34,7 +34,7 @@ h1 {
   font-size: 125%;
   margin-left: 30px;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 15px;
   outline: none;
   border: 1px rgb(121, 173, 119) solid;
   cursor: pointer;
@@ -71,4 +71,44 @@ h1 {
 .topic-message {
   font-size: 125%;
   margin-left: 20px;
+}
+
+
+
+form {
+  margin-left: 50px;
+}
+
+label {
+  padding-top: 5px;
+  font-size: 120%;
+  display: inline-block;
+  float: left;
+}
+
+input, textarea {
+  display: inline-block;
+  float: right;
+  font-size: 120%;
+}
+
+input {
+  height: 30px;
+  width: 500px;
+}
+
+textarea {
+  width: 500px;
+  height: 200px;
+}
+
+.form-elements {
+  margin-left: 20px;
+  width: 50%;
+}
+
+.form-row {
+  display: block;
+  overflow: auto;
+  margin-bottom: 20px;
 }

@@ -13,7 +13,22 @@
       <span class="topic-title" (click)="displayTopic(topicIndex)">
         {{ topic.title }}
       </span>
-      <p *ngIf="topicIndex===topicOnDisplay">{{ topic.desc }}</p>
+      <p *ngIf="topicIndex===topicOnDisplay">
+        {{ topic.desc }} <br>
+        <button type="button"
+                class="general-button"
+                (click)="openTopic(topicIndex)">
+                Open
+        </button>
+        <button type="button"
+                class="general-button">
+                Modify
+        </button>
+        <button type="button"
+                class="general-button">
+                Delete
+        </button>
+      </p>
     </li>
   </ol>
 </div>

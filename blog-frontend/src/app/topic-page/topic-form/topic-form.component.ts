@@ -9,7 +9,7 @@ import { TopicsService } from '../../shared/topics.service';
   styleUrls: ['./topic-form.component.css']
 })
 export class TopicFormComponent implements OnInit {
-  @Output() formSubmitted = new EventEmitter<boolean>();
+  @Output() formSubmitted = new EventEmitter<void>();
   topicForm: FormGroup;
   formValue = '';
   formDone = false;
@@ -27,10 +27,9 @@ export class TopicFormComponent implements OnInit {
   addNewTopic() {
     this.formValue = JSON.stringify(this.topicForm.value);
     this.topicsService.addNewTopic({title: this.topicForm.value.title,
-                                    desc: this.topicForm.value.desc})
-                      .subscribe((response) => console.log(response));
+                                    desc: this.topicForm.value.desc});
     this.formDone = true;
-    this.formSubmitted.emit(true);
+    this.formSubmitted.emit();
   }
 
   clearTopicForm() {
@@ -39,7 +38,7 @@ export class TopicFormComponent implements OnInit {
 
   cancelAddTopic() {
     this.formDone = true;
-    this.formSubmitted.emit(true);
+    this.formSubmitted.emit();
   }
 
 }

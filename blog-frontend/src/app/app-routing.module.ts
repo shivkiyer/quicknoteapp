@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { TopicPageComponent } from './topic-page/topic-page.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { SubTopicComponent } from './sub-topic/sub-topic.component';
 
 var appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: WelcomePageComponent },
   { path: 'topics', component: TopicPageComponent },
+  { path: 'topics/:id', component: SubTopicComponent }
 ];
 
 @NgModule({

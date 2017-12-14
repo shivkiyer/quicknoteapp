@@ -25,6 +25,10 @@
   width: 40%;
 }
 
+li {
+  margin-bottom: 20px;
+}
+
 li p {
   margin-left: 20px;
   font-size: 80%;

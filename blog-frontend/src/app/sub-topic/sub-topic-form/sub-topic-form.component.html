@@ -1,0 +1,19 @@
+<form [formGroup]="subTopicForm" (ngSubmit)="addSubTopic()">
+
+  <div class="form-elements">
+    <div class="form-row">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" formControlName="title"> <br>
+    </div>
+  </div>
+
+  <div class="form-elements">
+    <div class="form-row">
+      <label for="desc">Description</label>
+      <textarea name="desc" id="desc" rows="8" cols="80" formControlName="desc"></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="general-button">Submit</button>
+
+</form>

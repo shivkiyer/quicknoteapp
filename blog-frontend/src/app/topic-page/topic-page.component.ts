@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TopicsService } from '../shared/topics.service';
 
@@ -15,7 +16,8 @@ export class TopicPageComponent implements OnInit {
   topicList: {title: string, desc: string}[];
   topicOnDisplay: number = -1;
 
-  constructor(private topicsService: TopicsService) { }
+  constructor(private topicsService: TopicsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.topicsService.getTopicList();
@@ -32,5 +34,10 @@ export class TopicPageComponent implements OnInit {
 
   displayTopic(topicIndex: number) {
     this.topicOnDisplay = topicIndex;
+  }
+
+  openTopic(topicIndex: number) {
+    console.log("Here");
+    this.router.navigate(['/topics', topicIndex + 1]);
   }
 }

@@ -38,19 +38,15 @@ app.use(function(req, res, next){
 });
 
 app.post('/topicsdb/', (req, res) => {
-  console.log(req.body);
   var newTopic = new Topic({
     title: req.body.title,
     desc: req.body.desc
   });
-  console.log("Created topic");
 
   newTopic.save().then((topic) => {
     res.send(topic);
-    console.log("Success");
   }, (e) => {
     res.status(400).send(e);
-    console.log("Failed");
   });
 });
 
@@ -58,12 +54,16 @@ app.post('/topicsdb/', (req, res) => {
 app.get('/topicsdb', (req, res) => {
   Topic.find().then((topics) => {
     res.send(topics);
-    console.log(topics);
   }, (e) => {
     res.status(400).send();
   });
 });
 
+
+app.post('/subtopicsdb', (req, res) => {
+  console.log(req.body);
+  res.send("Hello world");
+});
 
 app.listen(port, () => {
   console.log(`Backend server running on port ${port}`);

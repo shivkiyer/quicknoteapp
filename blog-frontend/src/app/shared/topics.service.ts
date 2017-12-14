@@ -11,19 +11,23 @@ export class TopicsService {
 
   addNewTopic(topic: {title: string, desc: string}) {
     this.topicList.push(topic);
-    return this.http.post(this.baseURL + '/topicsdb', topic);
+    this.http.post(this.baseURL + '/topicsdb', topic)
+      .subscribe();
   }
 
   getTopicList() {
+    this.topicList = [];
     this.http.get(this.baseURL + '/topicsdb').subscribe(
       (response) => {
-        // var data = response.json();
-        console.log(response.json());
         response.json().forEach((topicItem) => {
-          this.topicList.push(topicItem);
+          this.topicList.push({
+            title: topicItem.title,
+            desc: topicItem.desc
+          });
         });
       },
       (error) => console.log(error)
     );
   }
+
 }
