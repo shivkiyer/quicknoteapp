@@ -30,26 +30,14 @@ h1 {
 }
 
 .general-button {
-  background-color: rgb(121, 173, 119);
-  font-size: 125%;
   margin-left: 30px;
-  padding: 10px;
-  border-radius: 15px;
   outline: none;
-  border: 1px rgb(121, 173, 119) solid;
   cursor: pointer;
 }
 
-.button-cancel {
-  background-color: rgb(142, 65, 65);
-}
-
-.button-clear {
-  background-color: rgb(168, 166, 166);
-}
-
 .general-button:active, .general-button:hover {
-  background-color: rgb(115, 187, 214);
+  background-color: rgb(229, 166, 137);
+  outline: none;
 }
 
 .topic-listing {
@@ -62,17 +50,11 @@ h1 {
   margin-left: 20px;
 }
 
-/*.topic-listing li::before {
-  content: "";
-  width: 10px;
-  display: inline-block;
-}*/
 
 .topic-message {
   font-size: 125%;
   margin-left: 20px;
 }
-
 
 
 form {

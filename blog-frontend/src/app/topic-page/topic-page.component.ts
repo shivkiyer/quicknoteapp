@@ -25,7 +25,7 @@ export class TopicPageComponent implements OnInit {
   }
 
   viewTopics() {
-    this.displaySub = true;
+    this.displaySub = !this.displaySub;
   }
 
   addNewTopic() {

@@ -16,16 +16,16 @@
       <p *ngIf="topicIndex===topicOnDisplay">
         {{ topic.desc }} <br>
         <button type="button"
-                class="general-button"
+                class="btn btn-primary general-button"
                 (click)="openTopic(topicIndex)">
                 Open
         </button>
         <button type="button"
-                class="general-button">
+                class="btn btn-info general-button">
                 Modify
         </button>
         <button type="button"
-                class="general-button">
+                class="btn btn-danger general-button">
                 Delete
         </button>
       </p>
@@ -40,7 +40,7 @@
 </p>
 
 <br>
-<button class="general-button"
+<button class="btn btn-primary"
         type="button"
         name="add-topic"
         (click)=addNewTopic()
