@@ -3,7 +3,6 @@
 body, html {
   padding: 20px;
   margin: 0;
-  font-family: sans-serif;
   background-color: rgb(229, 229, 229);
   box-sizing: border-box;
 }
@@ -40,57 +39,10 @@ h1 {
   outline: none;
 }
 
-.topic-listing {
-  margin: 0;
-  font-size: 125%;
-  line-height: 175%;
+.space-above {
+  margin-top: 5px;
 }
 
-.topic-listing li {
-  margin-left: 20px;
-}
-
-
-.topic-message {
-  font-size: 125%;
-  margin-left: 20px;
-}
-
-
-form {
-  margin-left: 50px;
-}
-
-label {
-  padding-top: 5px;
-  font-size: 120%;
-  display: inline-block;
-  float: left;
-}
-
-input, textarea {
-  display: inline-block;
-  float: right;
-  font-size: 120%;
-}
-
-input {
-  height: 30px;
-  width: 500px;
-}
-
-textarea {
-  width: 500px;
-  height: 200px;
-}
-
-.form-elements {
-  margin-left: 20px;
-  width: 50%;
-}
-
-.form-row {
-  display: block;
-  overflow: auto;
-  margin-bottom: 20px;
+.space-below {
+  margin-bottom: 5px;
 }

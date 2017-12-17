@@ -1,51 +1,66 @@
 <h1>Quick Note App</h1>
 
-<h2 class="url-link"
-    (click)="viewTopics()">
-    View archived topics
-</h2>
+<div class="row">
+  <div class="col-md-2">
 
-<div class="topic-list">
-  <ol class="topic-listing"
-      (clickEvent)="headerClicked=true"
-      *ngIf="topicList.length>0&&displaySub">
-    <li *ngFor="let topic of topicList; let topicIndex = index">
-      <span class="topic-title" (click)="displayTopic(topicIndex)">
-        {{ topic.title }}
-      </span>
-      <p *ngIf="topicIndex===topicOnDisplay">
-        {{ topic.desc }} <br>
-        <button type="button"
-                class="btn btn-primary general-button"
-                (click)="openTopic(topicIndex)">
-                Open
-        </button>
-        <button type="button"
-                class="btn btn-info general-button">
-                Modify
-        </button>
-        <button type="button"
-                class="btn btn-danger general-button">
-                Delete
-        </button>
-      </p>
-    </li>
-  </ol>
+  </div>
+
+  <div class="col-md-8">
+    <h2 class="url-link"
+        (click)="viewTopics()">
+        View archived topics
+    </h2>
+
+    <div class="topic-list">
+      <ol class="topic-listing"
+          (clickEvent)="headerClicked=true"
+          *ngIf="topicList.length>0&&displaySub">
+        <li *ngFor="let topic of topicList; let topicIndex = index">
+          <span class="topic-title" (click)="displayTopic(topicIndex)">
+            {{ topic.title }}
+          </span>
+          <p *ngIf="topicIndex===topicOnDisplay">
+            {{ topic.desc }} <br>
+          </p>
+          <div *ngIf="topicIndex===topicOnDisplay" class="space-above">
+            <button type="button"
+                    class="btn btn-primary general-button"
+                    (click)="openTopic(topicIndex)">
+                    Open
+            </button>
+            <button type="button"
+                    class="btn btn-info general-button">
+                    Modify
+            </button>
+            <button type="button"
+                    class="btn btn-danger general-button">
+                    Delete
+            </button>
+          </div>
+
+        </li>
+      </ol>
+    </div>
+
+    <p class="topic-message"
+        (clickEvent)="headerClicked=true"
+        *ngIf="topicList.length===0&&displaySub">
+        No topics to display.
+    </p>
+
+    <br>
+    <button class="btn btn-primary"
+            type="button"
+            name="add-topic"
+            (click)=addNewTopic()
+            *ngIf="!newTopic">
+            Add topic
+    </button>
+
+    <app-topic-form *ngIf="newTopic" (formSubmitted)="newTopic=false"></app-topic-form>
+  </div>
+
+  <div class="col-md-2">
+
+  </div>
 </div>
-
-<p class="topic-message"
-    (clickEvent)="headerClicked=true"
-    *ngIf="topicList.length===0&&displaySub">
-    No topics to display.
-</p>
-
-<br>
-<button class="btn btn-primary"
-        type="button"
-        name="add-topic"
-        (click)=addNewTopic()
-        *ngIf="!newTopic">
-        Add topic
-</button>
-
-<app-topic-form *ngIf="newTopic" (formSubmitted)="newTopic=false"></app-topic-form>

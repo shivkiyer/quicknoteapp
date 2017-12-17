@@ -30,6 +30,7 @@ export class TopicPageComponent implements OnInit {
 
   addNewTopic() {
     this.newTopic = true;
+    this.topicOnDisplay = -1;
   }
 
   displayTopic(topicIndex: number) {
