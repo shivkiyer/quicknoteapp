@@ -21,6 +21,15 @@ var TopicSchema = new mongoose.Schema({
 
 var Topic = mongoose.model('Topic', TopicSchema);
 
+var SubTopicSchema = new mongoose.Schema({
+  title: String,
+  desc: String,
+  topic: String
+})
+
+var SubTopic = mongoose.model('SubTopic', SubTopicSchema);
+
+
 var app = express();
 var rootPath = path.normalize(__dirname);
 var rootPath = path.dirname(path.normalize(__dirname));
@@ -60,9 +69,52 @@ app.get('/topicsdb', (req, res) => {
 });
 
 
+app.get('/topicsdb/:id', (req, res) => {
+  var topicId = req.params.id;
+  Topic.findById(topicId).then((topic) => {
+    return SubTopic.find({
+      topic: topic.title
+    })
+  }).then((subTopics) => {
+    res.send(subTopics);
+  }).catch((e) => {
+    res.status(400).send('Topic not found');
+  });
+});
+
+
 app.post('/subtopicsdb', (req, res) => {
-  console.log(req.body);
-  res.send("Hello world");
+  var subTopicData = req.body;
+  var subTopic = {}
+
+  if (Object.keys(subTopicData).indexOf("subTopic")>-1) {
+    if (Object.keys(subTopicData.subTopic).indexOf("title")>-1) {
+      subTopic.title = subTopicData.subTopic.title;
+    }
+    if (Object.keys(subTopicData.subTopic).indexOf("desc")>-1) {
+      subTopic.desc = subTopicData.subTopic.desc;
+    }
+  }
+
+  if (Object.keys(subTopicData).indexOf("topic")>-1) {
+    if (Object.keys(subTopicData.topic).indexOf("title")>-1) {
+      subTopic.topic = subTopicData.topic.title;
+    }
+  }
+
+  var newSubTopic = new SubTopic(subTopic);
+
+  newSubTopic.save().then((subTopic) => {
+    res.send({
+      title: subTopic.title,
+      desc: subTopic.desc,
+      topic: subTopic.topic,
+      _id: subTopic._id
+    });
+  }, (e) => {
+    res.status(400).send(e);
+  });
+
 });
 
 app.listen(port, () => {

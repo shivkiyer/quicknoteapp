@@ -5,21 +5,42 @@ import { Http } from '@angular/http';
 export class SubTopicsService {
 
   baseURL = 'http://localhost:3000';
-  subTopicList: {title: string, desc: string}[] = [];
+  subTopicsList: {title: string, desc: string, "_id": string}[] = [];
 
   constructor(private http: Http) {}
 
   addSubTopic(topic: {title: string, desc: string},
               subTopic: {title: string, desc: string}) {
-    this.subTopicList.push(subTopic);
-    console.log(this.subTopicList);
     this.http.post(this.baseURL+'/subtopicsdb', {
       topic,
       subTopic
     }).subscribe(
       (response) => {
-        console.log(response);
+        var data = response.json();
+        data.forEach((dataItem) => {
+          this.subTopicsList.push({
+            title: dataItem.title,
+            desc: dataItem.desc,
+            "_id": dataItem["_id"]
+          })
+        });
       }
     );
+    console.log(this.subTopicsList);
+  }
+
+  getSubTopics(topicId: string) {
+    this.http.get(this.baseURL + '/topicsdb' + "/" + topicId)
+      .subscribe(
+        (response) => {
+          var data = response.json();
+          data.forEach((dataItem) => {
+            this.subTopicsList.push({
+              title: dataItem.title,
+              desc: dataItem.desc,
+              "_id": dataItem["_id"]
+            });
+        });
+    });
   }
 }

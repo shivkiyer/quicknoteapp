@@ -7,3 +7,31 @@
 	"title": "Node JS",
 	"desc": "Node JS is a back-end technology based on JavaScript used to access databases."
 }
+
+
+{
+	"title": "Forms",
+	"desc": "Describes how to create, validate and extract information from forms.",\
+	"topic": "Angular"
+}
+
+
+{
+	"title": "Services",
+	"desc": "Services are a collection of methods and data that can be used between several components or even app wide.",
+	"topic": "Angular"
+}
+
+
+{
+	"title": "Http",
+	"desc": "Making Http requests to a server.",
+	"topic": "Angular"
+}
+
+
+{
+	"title": "Express",
+	"desc": "Using the express module for setting up an HTTP server.".
+	"topic": "Node JS"
+}

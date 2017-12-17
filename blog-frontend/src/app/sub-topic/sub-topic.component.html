@@ -1,5 +1,25 @@
 <h1>Quick Note App</h1>
 
-<h2>Contents of Topic {{ topic.title }} </h2>
+<div class="row">
+  <div class="col-md-2">
 
-<app-sub-topic-form [topic]="topic"></app-sub-topic-form>
+  </div>
+
+  <div class="col-md-8">
+    <h3>Contents of Topic {{ topic.title }} </h3>
+    <ol *ngIf="formSubmitted">
+      <li *ngFor="let subTItem of subTopicsList">{{ subTItem.title }}</li>
+    </ol>
+  </div>
+  <div class="col-md-8">
+    <app-sub-topic-form [topic]="topic"
+                (formSubmitted)="formSubmitted=true"
+                *ngIf="!formSubmitted">
+    </app-sub-topic-form>
+  </div>
+
+  <div class="col-md-2">
+
+  </div>
+
+</div>

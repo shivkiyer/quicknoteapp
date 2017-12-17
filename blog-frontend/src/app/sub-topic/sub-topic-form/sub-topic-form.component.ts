@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { SubTopicsService } from './../../shared/sub-topics.service';
@@ -10,8 +10,9 @@ import { SubTopicsService } from './../../shared/sub-topics.service';
 })
 export class SubTopicFormComponent implements OnInit {
   subTopicForm: FormGroup;
-  subTopicList: {title: string, desc: string}[] = [];
+  subTopicsList: {title: string, desc: string}[] = [];
   @Input() topic: {title: string, desc:string};
+  @Output() formSubmitted = new EventEmitter<void>();
 
   constructor(private subTopicsService: SubTopicsService) {
     this.subTopicForm = new FormGroup({
@@ -21,11 +22,13 @@ export class SubTopicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subTopicList = this.subTopicsService.subTopicList;
+    this.subTopicsList = this.subTopicsService.subTopicsList;
   }
 
   addSubTopic() {
     this.subTopicsService.addSubTopic(this.topic, this.subTopicForm.value);
+    this.formSubmitted.emit();
+
   }
 
 }

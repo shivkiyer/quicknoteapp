@@ -5,14 +5,23 @@ import 'rxjs/Rx';
 @Injectable()
 export class TopicsService {
   baseURL = 'http://localhost:3000';
-  topicList: {title: string, desc: string}[] = [];
+  topicList: {title: string, desc: string, _id: string}[] = [];
 
   constructor(private http: Http) {}
 
   addNewTopic(topic: {title: string, desc: string}) {
-    this.topicList.push(topic);
     this.http.post(this.baseURL + '/topicsdb', topic)
-      .subscribe();
+      .subscribe(
+        (response) => {
+          var data = response.json();
+          this.topicList.push({
+            title: data.title,
+            desc: data.desc,
+            "_id": data["_id"]
+          }
+          );
+        }
+      );
   }
 
   getTopicList() {
@@ -22,7 +31,8 @@ export class TopicsService {
         response.json().forEach((topicItem) => {
           this.topicList.push({
             title: topicItem.title,
-            desc: topicItem.desc
+            desc: topicItem.desc,
+            "_id": topicItem["_id"]
           });
         });
       },
