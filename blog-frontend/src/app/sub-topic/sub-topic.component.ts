@@ -12,6 +12,7 @@ import { SubTopicsService } from './../shared/sub-topics.service';
 export class SubTopicComponent implements OnInit {
 
   topicIndex: number;
+  subTopicOnDisplay: number;
   topic: {title: string, desc: string} = {
     title: '',
     desc: ''
@@ -39,6 +40,11 @@ export class SubTopicComponent implements OnInit {
     );
     this.subTopicsList = this.subTopicsService.subTopicsList;
     this.formSubmitted = true;
+    this.subTopicOnDisplay = -1;
+  }
+
+  displaySubTopic(subTopicIndex: number) {
+    this.subTopicOnDisplay = subTopicIndex;
   }
 
 }

@@ -13,7 +13,6 @@
 
     <div class="topic-list">
       <ol class="topic-listing"
-          (clickEvent)="headerClicked=true"
           *ngIf="topicList.length>0&&displaySub">
         <li *ngFor="let topic of topicList; let topicIndex = index">
           <span class="topic-title" (click)="displayTopic(topicIndex)">
@@ -43,7 +42,6 @@
     </div>
 
     <p class="topic-message"
-        (clickEvent)="headerClicked=true"
         *ngIf="topicList.length===0&&displaySub">
         No topics to display.
     </p>

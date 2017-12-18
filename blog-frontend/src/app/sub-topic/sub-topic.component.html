@@ -7,9 +7,22 @@
 
   <div class="col-md-8">
     <h3>Contents of Topic {{ topic.title }} </h3>
-    <ol *ngIf="formSubmitted">
-      <li *ngFor="let subTItem of subTopicsList">{{ subTItem.title }}</li>
-    </ol>
+    <br>
+    <div class="topic-list">
+      <ol *ngIf="formSubmitted" class="topic-listing">
+        <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
+          <span class="topic-title"
+                (click)=displaySubTopic(subTIndex)>
+                {{ subTItem.title }}
+          </span>
+
+          <p *ngIf="subTIndex===subTopicOnDisplay">
+            {{ subTItem.desc }}
+          </p>
+
+        </li>
+      </ol>
+    </div>
   </div>
   <div class="col-md-8">
     <app-sub-topic-form [topic]="topic"

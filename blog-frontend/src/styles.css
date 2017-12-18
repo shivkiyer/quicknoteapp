@@ -46,3 +46,32 @@ h1 {
 .space-below {
   margin-bottom: 5px;
 }
+
+.topic-title {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.topic-title:active {
+  background-color: rgb(229, 229, 229);
+}
+
+.topic-title:hover {
+  background-color: rgb(115, 187, 214);
+}
+
+.topic-title:link, .topic-title:visited {
+  background-color: rgb(229, 229, 229);
+}
+
+.topic-listing {
+  margin: 0;
+  font-size: 125%;
+  line-height: 175%;
+}
+
+.topic-message {
+  font-size: 125%;
+  margin-left: 20px;
+}
