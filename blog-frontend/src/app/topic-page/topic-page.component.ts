@@ -34,11 +34,14 @@ export class TopicPageComponent implements OnInit {
   }
 
   displayTopic(topicIndex: number) {
-    this.topicOnDisplay = topicIndex;
+    if (this.topicOnDisplay===topicIndex) {
+      this.topicOnDisplay = -1;
+    } else {
+      this.topicOnDisplay = topicIndex;
+    }
   }
 
   openTopic(topicIndex: number) {
-    console.log("Here");
     this.router.navigate(['/topics', topicIndex + 1]);
   }
 }

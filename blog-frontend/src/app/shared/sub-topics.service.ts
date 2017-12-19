@@ -26,10 +26,10 @@ export class SubTopicsService {
         });
       }
     );
-    console.log(this.subTopicsList);
   }
 
   getSubTopics(topicId: string) {
+    this.subTopicsList = [];
     this.http.get(this.baseURL + '/topicsdb' + "/" + topicId)
       .subscribe(
         (response) => {

@@ -5,3 +5,7 @@ li {
 li p {
   padding-left: 5px;
 }
+
+li button {
+  margin-left: 20px;
+}

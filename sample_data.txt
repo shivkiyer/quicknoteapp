@@ -35,3 +35,9 @@
 	"desc": "Using the express module for setting up an HTTP server.".
 	"topic": "Node JS"
 }
+
+
+{
+	"title": "JavaScript",
+	"desc": "A front-end technology that helps add interactivity to web pages by manipulating the DOM."
+}

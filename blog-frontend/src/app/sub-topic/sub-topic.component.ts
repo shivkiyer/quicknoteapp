@@ -17,7 +17,7 @@ export class SubTopicComponent implements OnInit {
     title: '',
     desc: ''
   };
-  formSubmitted: boolean = true;
+  addNewForm: boolean = false;
   subTopicsList: {title: string, desc: string, "_id": string}[] = [];
 
   constructor(private topicsService: TopicsService,
@@ -39,12 +39,20 @@ export class SubTopicComponent implements OnInit {
       }
     );
     this.subTopicsList = this.subTopicsService.subTopicsList;
-    this.formSubmitted = true;
+    this.addNewForm = false;
     this.subTopicOnDisplay = -1;
   }
 
   displaySubTopic(subTopicIndex: number) {
-    this.subTopicOnDisplay = subTopicIndex;
+    if (this.subTopicOnDisplay===subTopicIndex) {
+      this.subTopicOnDisplay = -1;
+    } else {
+      this.subTopicOnDisplay = subTopicIndex;
+    }
+  }
+
+  addNewSubTopic() {
+    this.addNewForm = true;
   }
 
 }

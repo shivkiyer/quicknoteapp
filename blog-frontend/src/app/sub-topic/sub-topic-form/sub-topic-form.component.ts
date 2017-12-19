@@ -28,7 +28,14 @@ export class SubTopicFormComponent implements OnInit {
   addSubTopic() {
     this.subTopicsService.addSubTopic(this.topic, this.subTopicForm.value);
     this.formSubmitted.emit();
+  }
 
+  cancelForm() {
+    this.formSubmitted.emit();
+  }
+
+  resetForm() {
+    this.subTopicForm.reset();
   }
 
 }
