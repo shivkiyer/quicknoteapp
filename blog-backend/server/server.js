@@ -29,6 +29,18 @@ var SubTopicSchema = new mongoose.Schema({
 
 var SubTopic = mongoose.model('SubTopic', SubTopicSchema);
 
+var NoteSchema = new mongoose.Schema({
+  title: String,
+  topic: String,
+  subTopic: String,
+  contents: [{
+    itemType: String,
+    itemData: String
+  }]
+});
+
+var Note = mongoose.model('Note', NoteSchema);
+
 
 var app = express();
 var rootPath = path.normalize(__dirname);
@@ -116,6 +128,50 @@ app.post('/subtopicsdb', (req, res) => {
   });
 
 });
+
+
+
+app.post('/notedb', (req, res) => {
+  var noteData = {};
+  noteData.title = req.body.note.title;
+  noteData.topic = req.body.topic;
+  noteData.subTopic = req.body.subTopic;
+
+  noteData.contents = [];
+  var noteTags = Object.keys(req.body.note);
+  var itemType;
+  if (noteTags.length>-1) {
+    noteTags.forEach((noteTagKey) => {
+      if (noteTagKey.slice(0, 4)==='text') {
+        itemType = 'text';
+      } else if (noteTagKey.slice(0, 4)==='code') {
+        itemType = 'code';
+      } else {
+        itemType = 'title';
+      }
+
+      if (itemType==='text' || itemType==='code'){
+        noteData.contents.push({
+          itemType: itemType,
+          itemData: req.body.note[noteTagKey]
+        });
+      }
+    });
+  }
+
+  var newNote = new Note(noteData);
+  newNote.save().then(
+    (note) => {
+      res.send(note);
+    }
+  ).catch(
+    (e) => {
+      console.log(e);
+      res.status(400).send(e);
+    }
+  );
+});
+
 
 app.listen(port, () => {
   console.log(`Backend server running on port ${port}`);

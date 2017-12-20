@@ -13,7 +13,7 @@
       <ol class="topic-listing">
         <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
           <span class="topic-title"
-                (click)=displaySubTopic(subTIndex)>
+                (click)="displaySubTopic(subTIndex)">
                 {{ subTItem.title }}
           </span>
 
@@ -25,7 +25,8 @@
                 *ngIf="subTIndex===subTopicOnDisplay">
 
             <button type="button"
-                    class="btn btn-primary">
+                    class="btn btn-primary"
+                    (click)="openSubTopic(subTIndex)">
                     Open
             </button>
 

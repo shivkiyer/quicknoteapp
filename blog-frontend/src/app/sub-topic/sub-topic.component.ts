@@ -38,6 +38,7 @@ export class SubTopicComponent implements OnInit {
         }
       }
     );
+
     this.subTopicsList = this.subTopicsService.subTopicsList;
     this.addNewForm = false;
     this.subTopicOnDisplay = -1;
@@ -53,6 +54,13 @@ export class SubTopicComponent implements OnInit {
 
   addNewSubTopic() {
     this.addNewForm = true;
+    this.subTopicOnDisplay = -1;
+  }
+
+  openSubTopic(subTopicIndex: number) {
+    const tIndex = this.topicIndex + 1;
+    const subTIndex = subTopicIndex + 1;
+    this.router.navigate(['/topics/',tIndex, subTIndex]);
   }
 
 }

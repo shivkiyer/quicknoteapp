@@ -10,9 +10,12 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { TopicFormComponent } from './topic-page/topic-form/topic-form.component';
 import { SubTopicComponent } from './sub-topic/sub-topic.component';
 import { SubTopicFormComponent } from './sub-topic/sub-topic-form/sub-topic-form.component';
+import { NoteComponent } from './note/note.component';
+import { NoteFormComponent } from './note/note-form/note-form.component';
 
 import { TopicsService } from './shared/topics.service';
 import { SubTopicsService } from './shared/sub-topics.service';
+import { NoteService } from './shared/note.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { SubTopicsService } from './shared/sub-topics.service';
     WelcomePageComponent,
     TopicFormComponent,
     SubTopicComponent,
-    SubTopicFormComponent
+    SubTopicFormComponent,
+    NoteComponent,
+    NoteFormComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { SubTopicsService } from './shared/sub-topics.service';
     HttpModule
   ],
   providers: [TopicsService,
-              SubTopicsService
+              SubTopicsService,
+              NoteService
   ],
   bootstrap: [AppComponent]
 })

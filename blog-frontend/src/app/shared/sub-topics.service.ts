@@ -17,12 +17,10 @@ export class SubTopicsService {
     }).subscribe(
       (response) => {
         var data = response.json();
-        data.forEach((dataItem) => {
-          this.subTopicsList.push({
-            title: dataItem.title,
-            desc: dataItem.desc,
-            "_id": dataItem["_id"]
-          })
+        this.subTopicsList.push({
+          title: data.title,
+          desc: data.desc,
+          "_id": data["_id"]
         });
       }
     );

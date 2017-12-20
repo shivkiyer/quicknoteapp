@@ -1,0 +1,142 @@
+<form [formGroup]="noteForm"
+      class="form-horizontal"
+      (ngSubmit)="noteSubmit()">
+
+  <div class="form-group">
+    <div class="row">
+
+      <div class="col-md-2 label-align">
+        <label for="title"
+                class="control-label">
+                Title:
+        </label>
+      </div>
+
+      <div class="col-md-10">
+        <textarea name="title"
+                  id="title"
+                  formControlName="title"
+                  rows="2" cols="80">
+        </textarea>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div *ngFor="let formItem of formContents; let itemIndex=index">
+
+    <div class="form-group">
+      <div class="row">
+
+
+        <div class="col-md-2 label-align">
+          <div *ngIf="formKeys[itemIndex]==='text'">
+            <label [for]="formContents[itemIndex]"
+                    class="control-label">
+                    Note text:
+            </label>
+          </div>
+
+          <div *ngIf="formKeys[itemIndex]==='code'">
+            <label [for]="formContents[itemIndex]"
+                    class="control-label">
+                    Code:
+            </label>
+          </div>
+        </div>
+
+        <div class="col-md-10">
+          <div *ngIf="formKeys[itemIndex]==='text'">
+            <textarea [id]="formContents[itemIndex]"
+                      rows="8" cols="80"
+                      [formControlName]="formContents[itemIndex]">
+            </textarea>
+          </div>
+
+          <div *ngIf="formKeys[itemIndex]==='code'">
+            <textarea [id]="formContents[itemIndex]"
+                      rows="8" cols="80"
+                      [formControlName]="formContents[itemIndex]">
+            </textarea>
+          </div>
+          <button type="button"
+                  class="btn btn-danger"
+                  (click)="deleteContent(itemIndex)">
+                  Delete
+          </button>
+          Click here to delete the above input.
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+
+    <div class="col-md-8">
+      <br>
+      To add more inputs, click on the buttons below. <br>
+      <button type="button"
+              class="btn btn-primary"
+              (click)="addText()">
+              Add text
+      </button>
+
+      <button type="button"
+              class="btn btn-primary"
+              (click)="addCode()">
+              Add code
+      </button>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <button type="submit"
+            class="btn btn-success">
+      Submit
+    </button>
+  </div>
+
+
+  <div *ngIf="formSubmitted">
+
+    <div class="row">
+      <div class="col-md-2 label-align">
+        Title:
+      </div>
+
+      <div class="col-md-10">
+        {{ noteForm.value.title }}
+      </div>
+    </div>
+
+    <div *ngFor="let formItem of formContents; let itemIndex=index">
+
+      <div class="row">
+        <div class="col-md-2 label-align">
+          {{ formItem }}
+        </div>
+
+        <div class="col-md-10">
+          <div *ngIf="formKeys[itemIndex]==='code'">
+            <pre>{{ noteForm.value[formItem] }}</pre>
+          </div>
+          <div *ngIf="formKeys[itemIndex]==='text'">
+            {{ noteForm.value[formItem] }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</form>

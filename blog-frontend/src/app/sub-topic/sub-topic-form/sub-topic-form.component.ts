@@ -10,7 +10,7 @@ import { SubTopicsService } from './../../shared/sub-topics.service';
 })
 export class SubTopicFormComponent implements OnInit {
   subTopicForm: FormGroup;
-  subTopicsList: {title: string, desc: string}[] = [];
+  // subTopicsList: {title: string, desc: string}[] = [];
   @Input() topic: {title: string, desc:string};
   @Output() formSubmitted = new EventEmitter<void>();
 
@@ -22,7 +22,6 @@ export class SubTopicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subTopicsList = this.subTopicsService.subTopicsList;
   }
 
   addSubTopic() {
