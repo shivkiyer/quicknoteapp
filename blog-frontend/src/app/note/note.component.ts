@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TopicsService } from './../shared/topics.service';
 import { SubTopicsService } from './../shared/sub-topics.service';
+import { NoteService } from './../shared/note.service';
 
 @Component({
   selector: 'app-note',
@@ -12,10 +13,15 @@ import { SubTopicsService } from './../shared/sub-topics.service';
 export class NoteComponent implements OnInit {
   topicIndex: number;
   subTopicIndex: number;
+  topic: string;
+  subTopic: string;
+  newForm: boolean;
+  note:any[] = [];
 
   constructor(private route: ActivatedRoute,
               private topicsService: TopicsService,
               private subTopicsService: SubTopicsService,
+              private noteService: NoteService,
               private router: Router) { }
 
   ngOnInit() {
@@ -31,7 +37,12 @@ export class NoteComponent implements OnInit {
             this.router.navigate(['/topics', this.topicIndex + 1])
           }
         }
-      );
+    );
+
+    this.newForm = false;
+    this.topic = this.topicsService.topicList[this.topicIndex].title;
+    this.subTopic = this.subTopicsService.subTopicsList[this.subTopicIndex].title;
+    this.noteService.getNotes(this.topicIndex, this.subTopicIndex);
   }
 
 }

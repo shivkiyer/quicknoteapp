@@ -6,11 +6,22 @@
   </div>
 
   <div class="col-md-8">
-    <h3>Note form</h3>
+    <h3>List of notes in {{ subTopic }} within {{ topic }}:</h3>
     <br>
 
+    <div *ngIf="note.length===0">
+      <h4>No notes to display. Click on the Add new button below to get started.</h4>
+      <br>
+      <button type="button"
+              class="btn btn-primary">
+              Add new
+      </button>
+    </div>
+
+
     <app-note-form [topicIndex]="topicIndex"
-                    [subTopicIndex]="subTopicIndex">
+                    [subTopicIndex]="subTopicIndex"
+                    *ngIf="newForm">
     </app-note-form>
   </div>
 

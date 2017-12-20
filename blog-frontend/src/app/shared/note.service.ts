@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 import { TopicsService } from './topics.service';
 import { SubTopicsService } from './sub-topics.service';
@@ -27,5 +27,17 @@ export class NoteService {
                     subTopic: subTopicTitle,
                     note: noteForm
                   }).subscribe();
+  }
+
+  getNotes(topicIndex:number,
+            subTopicIndex: number) {
+    var topicId = this.topicsService.topicList[topicIndex]['_id'];
+    var subTopicId = this.subTopicsService.subTopicsList[subTopicIndex]['_id'];
+    this.http.get(this.baseURL + '/notedb' + '/' + topicId + '/' + subTopicId)
+      .subscribe(
+        (response: Response) => {
+          var data = response.json();
+        }
+    );
   }
 }

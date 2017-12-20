@@ -173,6 +173,47 @@ app.post('/notedb', (req, res) => {
 });
 
 
+app.get('/notedb/:id/:subid', (req, res) => {
+  var topicId = req.params['id'];
+  var subTopicId = req.params['subid'];
+  var topicTitle, subTopicTitle;
+
+  Topic.findById(topicId).then(
+    (topic) => {
+      topicTitle = topic.title;
+      return SubTopic.findById(subTopicId);
+    }
+  ).then(
+    (subTopic) => {
+      subTopicTitle = subTopic.title;
+      return Note.find({
+        topic: topicTitle,
+        subTopic: subTopicTitle
+      });
+    }
+  ).then(
+    (noteData) => {
+      console.log(noteData);
+    }
+  ).catch(
+    (e) => {
+      console.log(e);
+    }
+  );
+
+  // SubTopic.findById(subTopicId).then(
+  //   (subTopic) => {
+  //     console.log(subTopic);
+  //   }
+  // ).catch(
+  //   (e) => {
+  //     console.log(e);
+  //   }
+  // );
+
+});
+
+
 app.listen(port, () => {
   console.log(`Backend server running on port ${port}`);
 });
