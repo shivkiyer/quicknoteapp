@@ -105,32 +105,36 @@
   </div>
 
 
-  <div *ngIf="formSubmitted">
+  <div *ngIf="noteForm.dirty&&noteForm.valid">
+    <br>
 
     <div class="row">
-      <div class="col-md-2 label-align">
+      <h3>Preview of the note</h3>
+      <!-- <div class="col-md-2 label-align">
         Title:
-      </div>
+      </div> -->
 
-      <div class="col-md-10">
-        {{ noteForm.value.title }}
+      <div class="col-md-12 para-font">
+        <strong>{{ noteForm.value.title }}</strong>
       </div>
     </div>
+    <br>
 
     <div *ngFor="let formItem of formContents; let itemIndex=index">
 
       <div class="row">
-        <div class="col-md-2 label-align">
+        <!-- <div class="col-md-2 label-align">
           {{ formItem }}
-        </div>
+        </div> -->
 
-        <div class="col-md-10">
+        <div class="col-md-12 para-font">
           <div *ngIf="formKeys[itemIndex]==='code'">
             <pre>{{ noteForm.value[formItem] }}</pre>
           </div>
           <div *ngIf="formKeys[itemIndex]==='text'">
             {{ noteForm.value[formItem] }}
           </div>
+          <br>
         </div>
 
       </div>

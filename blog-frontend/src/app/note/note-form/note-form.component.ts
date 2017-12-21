@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 import { NoteService } from './../../shared/note.service';
@@ -12,7 +12,7 @@ export class NoteFormComponent implements OnInit {
   formKeys:string[] = [];
   formContents:string[] = [];
   formContentIndex: number;
-  formSubmitted: boolean;
+  @Output() formSubmitted = new EventEmitter<void>();
 
   @Input() topicIndex: number;
   @Input() subTopicIndex: number;
@@ -27,15 +27,14 @@ export class NoteFormComponent implements OnInit {
     this.formKeys = [];
     this.formContents = [];
     this.formContentIndex = 0;
-    this.formSubmitted = false;
     // console.log(this.subTopicIndex);
     // console.log(this.topicIndex);
   }
 
   noteSubmit() {
     // console.log(this.noteForm.value);
-    this.formSubmitted = true;
     this.noteService.addNote(this.topicIndex, this.subTopicIndex, this.noteForm.value);
+    this.formSubmitted.emit();
   }
 
   addText() {

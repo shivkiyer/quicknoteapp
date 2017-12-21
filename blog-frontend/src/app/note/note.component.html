@@ -1,31 +1,78 @@
 <h1>Quick Note App</h1>
 
-<div class="row">
-  <div class="col-md-2">
+
+<div class="row"
+      *ngIf='!newForm&&noteDisplay'>
+
+  <div class="col-md-2"></div>
+
+  <div class="col-md-8">
+    <h3>{{ noteList[indexDisplay].title }}</h3>
+
+    <div *ngFor="let noteContent of noteList[indexDisplay].contents">
+      <div *ngIf="noteContent.itemType==='code'">
+        <pre>{{ noteContent.itemData }}</pre>
+      </div>
+      <div *ngIf="noteContent.itemType==='text'">
+        <p>{{ noteContent.itemData }}</p>
+      </div>
+    </div>
 
   </div>
 
+</div>
+
+
+<div class="row"
+      *ngIf="!newForm&&!noteDisplay">
+
+  <div class="col-md-2"></div>
+
   <div class="col-md-8">
+
     <h3>List of notes in {{ subTopic }} within {{ topic }}:</h3>
     <br>
 
-    <div *ngIf="note.length===0">
-      <h4>No notes to display. Click on the Add new button below to get started.</h4>
-      <br>
-      <button type="button"
-              class="btn btn-primary">
-              Add new
-      </button>
+    <div *ngIf="noteList&&noteList.length>0">
+      <ol class="topic-listing">
+        <li *ngFor="let noteItem of noteList; let noteIndex=index">
+          <span class="topic-title"
+                (click)="displayNote(noteIndex)">
+            {{ noteItem.title }}
+          </span>
+        </li>
+      </ol>
     </div>
 
+    <div *ngIf="noteList.length===0">
+      <h4>No notes to display. Click on the Add new button below to get started.</h4>
+    </div>
 
+    <br>
+    <button type="button"
+            class="btn btn-primary"
+            (click)="newNote()">
+            Add new
+    </button>
+
+  </div>
+
+  <div class="col-md-2"></div>
+
+</div>
+
+<div class="row"
+      *ngIf="newForm&&!noteDisplay">
+
+  <div class="col-md-2"></div>
+
+  <div class="col-md-8">
     <app-note-form [topicIndex]="topicIndex"
                     [subTopicIndex]="subTopicIndex"
-                    *ngIf="newForm">
+                    (formSubmitted)="newForm=false">
     </app-note-form>
   </div>
 
-  <div class="col-md-2">
+  <div class="col-md-2"></div>
 
-  </div>
 </div>

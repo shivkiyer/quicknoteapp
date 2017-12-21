@@ -193,24 +193,13 @@ app.get('/notedb/:id/:subid', (req, res) => {
     }
   ).then(
     (noteData) => {
-      console.log(noteData);
+      res.send(noteData);
     }
   ).catch(
     (e) => {
-      console.log(e);
+      res.status(400).send(e);
     }
   );
-
-  // SubTopic.findById(subTopicId).then(
-  //   (subTopic) => {
-  //     console.log(subTopic);
-  //   }
-  // ).catch(
-  //   (e) => {
-  //     console.log(e);
-  //   }
-  // );
-
 });
 
 

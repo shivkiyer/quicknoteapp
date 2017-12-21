@@ -16,7 +16,9 @@ export class NoteComponent implements OnInit {
   topic: string;
   subTopic: string;
   newForm: boolean;
-  note:any[] = [];
+  noteList:any[] = [];
+  noteDisplay: boolean = false;
+  indexDisplay: number = -1;
 
   constructor(private route: ActivatedRoute,
               private topicsService: TopicsService,
@@ -32,17 +34,31 @@ export class NoteComponent implements OnInit {
           this.subTopicIndex = +params['subid'] - 1;
           if (this.topicsService.topicList.length===0) {
             this.router.navigate(['/topics']);
+          } else {
+            this.topic = this.topicsService.topicList[this.topicIndex].title;
           }
           if (this.subTopicsService.subTopicsList.length===0) {
             this.router.navigate(['/topics', this.topicIndex + 1])
+          } else {
+            this.subTopic = this.subTopicsService.subTopicsList[this.subTopicIndex].title;
           }
         }
     );
 
     this.newForm = false;
-    this.topic = this.topicsService.topicList[this.topicIndex].title;
-    this.subTopic = this.subTopicsService.subTopicsList[this.subTopicIndex].title;
+    this.noteDisplay = false;
+    this.indexDisplay = -1;
     this.noteService.getNotes(this.topicIndex, this.subTopicIndex);
+    this.noteList = this.noteService.noteList;
+  }
+
+  newNote() {
+    this.newForm= true;
+  }
+
+  displayNote(noteIndex: number) {
+    this.noteDisplay = true;
+    this.indexDisplay = noteIndex;
   }
 
 }
