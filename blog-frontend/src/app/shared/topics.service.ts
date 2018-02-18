@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
 
+import { environment } from './../../environments/environment';
+
 @Injectable()
 export class TopicsService {
-  baseURL = 'http://localhost:3000';
+  baseURL: string = environment.configSettings.baseURL;
   topicList: {title: string, desc: string, _id: string}[] = [];
 
   constructor(private http: Http) {}
