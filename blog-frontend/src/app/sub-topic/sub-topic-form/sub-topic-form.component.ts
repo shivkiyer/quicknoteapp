@@ -10,8 +10,7 @@ import { SubTopicsService } from './../../shared/sub-topics.service';
 })
 export class SubTopicFormComponent implements OnInit {
   subTopicForm: FormGroup;
-  // subTopicsList: {title: string, desc: string}[] = [];
-  @Input() topic: {title: string, desc:string};
+  @Input() topic: string;
   @Output() formSubmitted = new EventEmitter<void>();
 
   constructor(private subTopicsService: SubTopicsService) {

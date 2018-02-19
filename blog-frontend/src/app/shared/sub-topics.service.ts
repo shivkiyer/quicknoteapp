@@ -8,24 +8,19 @@ import { TopicsService } from './topics.service';
 export class SubTopicsService {
 
   baseURL: string = environment.configSettings.baseURL;
-  subTopicsList: {title: string, desc: string, "_id": string}[] = [];
+  subTopicsList: {title: string, topic: string, desc: string, "_id": string}[] = [];
 
   constructor(private http: Http,
               private topicsService: TopicsService) {}
 
-  addSubTopic(topic: {title: string, desc: string},
+  addSubTopic(topic: string,
               subTopic: {title: string, desc: string}) {
-    let topicId;
-    this.topicsService.topicList.forEach((item) => {
-      if ((item.title === topic.title) && (item.desc === topic.desc)) {
-        topicId = item._id;
-      }
-    });
-    this.http.post(this.baseURL+'/topicsdb' + '/' + topicId, subTopic).subscribe(
+    this.http.post(this.baseURL+'/topicsdb' + '/' + topic, subTopic).subscribe(
       (response) => {
         var data = response.json();
         this.subTopicsList.push({
           title: data.title,
+          topic: topic,
           desc: data.desc,
           "_id": data["_id"]
         });
@@ -42,6 +37,7 @@ export class SubTopicsService {
           data.forEach((dataItem) => {
             this.subTopicsList.push({
               title: dataItem.title,
+              topic: topicId,
               desc: dataItem.desc,
               "_id": dataItem["_id"]
             });

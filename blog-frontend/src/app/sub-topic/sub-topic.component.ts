@@ -13,12 +13,9 @@ export class SubTopicComponent implements OnInit {
 
   topicIndex: number;
   subTopicOnDisplay: number;
-  topic: {title: string, desc: string} = {
-    title: '',
-    desc: ''
-  };
+  topic: string;
   addNewForm: boolean = false;
-  subTopicsList: {title: string, desc: string, "_id": string}[] = [];
+  subTopicsList: {title: string, topic: string, desc: string, "_id": string}[] = [];
 
   constructor(private topicsService: TopicsService,
               private router: Router,
@@ -30,8 +27,7 @@ export class SubTopicComponent implements OnInit {
       (params: Params) => {
         this.topicIndex = +params['id'] - 1;
         if (this.topicsService.topicList.length > 0 ) {
-          this.topic.title = this.topicsService.topicList[this.topicIndex].title;
-          this.topic.desc = this.topicsService.topicList[this.topicIndex].desc;
+          this.topic = this.topicsService.topicList[this.topicIndex].title;
           this.subTopicsService.getSubTopics(this.topicsService.topicList[this.topicIndex]["_id"]);
         } else {
           this.router.navigate(['/topics']);
