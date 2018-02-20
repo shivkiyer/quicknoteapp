@@ -18,7 +18,7 @@ export class NoteFormComponent implements OnInit {
   @Input() subTopicIndex: number;
 
   noteForm = new FormGroup({
-    title: new FormControl('Title', Validators.required)
+    title: new FormControl(null, Validators.required)
   });
 
   constructor(private noteService: NoteService) {}
@@ -27,14 +27,23 @@ export class NoteFormComponent implements OnInit {
     this.formKeys = [];
     this.formContents = [];
     this.formContentIndex = 0;
-    // console.log(this.subTopicIndex);
-    // console.log(this.topicIndex);
   }
 
   noteSubmit() {
-    // console.log(this.noteForm.value);
-    this.noteService.addNote(this.topicIndex, this.subTopicIndex, this.noteForm.value);
-    this.formSubmitted.emit();
+    this.noteService.addNote(this.topicIndex, this.subTopicIndex, this.noteForm.value)
+    .subscribe(
+      (data) => {
+        this.noteService.noteList.push(
+          {
+            title: data['title'],
+            subTopic: data['subTopicId'],
+            '_id': data['_id'],
+            contents: data['contents']
+          }
+        );
+        this.formSubmitted.emit();
+      }
+    );
   }
 
   addText() {
@@ -43,12 +52,10 @@ export class NoteFormComponent implements OnInit {
     this.formContents.push(textKey);
     this.noteForm.addControl(
       textKey,
-      new FormControl('Note text', Validators.required)
+      new FormControl(null, Validators.required)
     );
 
     this.formContentIndex += 1;
-    // console.log(this.formContents);
-    // console.log(this.formKeys);
   }
 
   addCode() {
@@ -57,22 +64,17 @@ export class NoteFormComponent implements OnInit {
     this.formContents.push(codeKey);
     this.noteForm.addControl(
       codeKey,
-      new FormControl('Code', Validators.required)
+      new FormControl(null, Validators.required)
     );
 
     this.formContentIndex += 1;
-    // console.log(this.formContents);
-    // console.log(this.formKeys);
   }
 
   deleteContent(itemIndex: number) {
     var deleteKey = this.formContents[itemIndex];
-    // console.log(deleteKey);
     this.formKeys.splice(itemIndex, 1);
     this.formContents.splice(itemIndex, 1);
     this.noteForm.removeControl(deleteKey);
-    // console.log(this.formKeys);
-    // console.log(this.formContents);
   }
 
 }

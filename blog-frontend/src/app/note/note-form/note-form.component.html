@@ -5,7 +5,7 @@
   <div class="form-group">
     <div class="row">
 
-      <div class="col-md-2 label-align">
+      <div class="col-md-2 text-right">
         <label for="title"
                 class="control-label">
                 Title:
@@ -16,7 +16,8 @@
         <textarea name="title"
                   id="title"
                   formControlName="title"
-                  rows="2" cols="80">
+                  rows="2" cols="80"
+                  placeholder="Title">
         </textarea>
       </div>
 
@@ -50,18 +51,20 @@
           <div *ngIf="formKeys[itemIndex]==='text'">
             <textarea [id]="formContents[itemIndex]"
                       rows="8" cols="80"
-                      [formControlName]="formContents[itemIndex]">
+                      [formControlName]="formContents[itemIndex]"
+                      placeholder="Note text">
             </textarea>
           </div>
 
           <div *ngIf="formKeys[itemIndex]==='code'">
             <textarea [id]="formContents[itemIndex]"
                       rows="8" cols="80"
-                      [formControlName]="formContents[itemIndex]">
+                      [formControlName]="formContents[itemIndex]"
+                      placeholder="Code segment">
             </textarea>
           </div>
           <button type="button"
-                  class="btn btn-danger"
+                  class="btn btn-danger general-button"
                   (click)="deleteContent(itemIndex)">
                   Delete
           </button>
@@ -74,21 +77,18 @@
   </div>
 
   <div class="row">
-    <div class="col-md-2">
 
-    </div>
-
-    <div class="col-md-8">
+    <div class="col-md-12">
       <br>
       To add more inputs, click on the buttons below. <br>
       <button type="button"
-              class="btn btn-primary"
+              class="btn btn-primary general-button"
               (click)="addText()">
               Add text
       </button>
 
       <button type="button"
-              class="btn btn-primary"
+              class="btn btn-primary general-button"
               (click)="addCode()">
               Add code
       </button>
@@ -99,7 +99,7 @@
 
   <div class="row">
     <button type="submit"
-            class="btn btn-success">
+            class="btn btn-success general-button">
       Submit
     </button>
   </div>
@@ -110,9 +110,6 @@
 
     <div class="row">
       <h3>Preview of the note</h3>
-      <!-- <div class="col-md-2 label-align">
-        Title:
-      </div> -->
 
       <div class="col-md-12 para-font">
         <strong>{{ noteForm.value.title }}</strong>
@@ -123,20 +120,15 @@
     <div *ngFor="let formItem of formContents; let itemIndex=index">
 
       <div class="row">
-        <!-- <div class="col-md-2 label-align">
-          {{ formItem }}
-        </div> -->
-
-        <div class="col-md-12 para-font">
-          <div *ngIf="formKeys[itemIndex]==='code'">
-            <pre>{{ noteForm.value[formItem] }}</pre>
+          <div class="col-md-12 para-font">
+            <div *ngIf="formKeys[itemIndex]==='code'">
+              <pre>{{ noteForm.value[formItem] }}</pre>
+            </div>
+            <div *ngIf="formKeys[itemIndex]==='text'">
+              {{ noteForm.value[formItem] }}
+            </div>
+            <br>
           </div>
-          <div *ngIf="formKeys[itemIndex]==='text'">
-            {{ noteForm.value[formItem] }}
-          </div>
-          <br>
-        </div>
-
       </div>
     </div>
 

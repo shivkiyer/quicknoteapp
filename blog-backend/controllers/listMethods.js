@@ -2,8 +2,6 @@ var Topic = require('./../db/models/topic');
 var SubTopic = require('./../db/models/subtopic');
 var Note = require('./../db/models/note');
 
-var playground = require('./../playground/just_trying_mongo');
-
 
 var getTopicList = (req, res) => {
   Topic.find()

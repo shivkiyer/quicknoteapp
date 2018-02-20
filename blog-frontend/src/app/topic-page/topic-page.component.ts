@@ -13,15 +13,27 @@ export class TopicPageComponent implements OnInit {
   displaySub = false;
   newTopic = false;
 
-  topicList: {title: string, desc: string}[];
+  topicList: {title: string, desc: string}[] = [];
   topicOnDisplay: number = -1;
 
   constructor(private topicsService: TopicsService,
               private router: Router) { }
 
   ngOnInit() {
-    this.topicsService.getTopicList();
-    this.topicList = this.topicsService.topicList;
+    this.topicsService.getTopicList()
+          .subscribe(
+            (data) => {
+              data.forEach((dataItem) => {
+                this.topicsService.topicList.push({
+                  title: dataItem.title,
+                  desc: dataItem.desc,
+                  "_id": dataItem["_id"]
+                });
+              });
+              this.topicList = this.topicsService.topicList;
+            },
+            (error) => console.log(error)
+          );
   }
 
   viewTopics() {

@@ -13,8 +13,10 @@ import { NoteService } from './../shared/note.service';
 export class NoteComponent implements OnInit {
   topicIndex: number;
   subTopicIndex: number;
-  topic: string;
-  subTopic: string;
+  topicId: string;
+  topicTitle: string;
+  subTopicTitle: string;
+  subTopicId: string;
   newForm: boolean;
   noteList:any[] = [];
   noteDisplay: boolean = false;
@@ -35,30 +37,50 @@ export class NoteComponent implements OnInit {
           if (this.topicsService.topicList.length===0) {
             this.router.navigate(['/topics']);
           } else {
-            this.topic = this.topicsService.topicList[this.topicIndex].title;
+            this.topicTitle = this.topicsService.topicList[this.topicIndex].title;
           }
           if (this.subTopicsService.subTopicsList.length===0) {
             this.router.navigate(['/topics', this.topicIndex + 1])
           } else {
-            this.subTopic = this.subTopicsService.subTopicsList[this.subTopicIndex].title;
+            this.subTopicTitle = this.subTopicsService.subTopicsList[this.subTopicIndex].title;
+            this.newForm = false;
+            this.noteDisplay = false;
+            this.indexDisplay = -1;
+            this.noteService.getNotes(this.topicIndex, this.subTopicIndex)
+                  .subscribe(
+                      (data) => {
+                        this.noteList = [];
+                        data.forEach((dataItem) => {
+                          this.noteList.push({
+                            title: dataItem['title'],
+                            subTopic: dataItem['subTopic'],
+                            '_id': dataItem['_id'],
+                            contents: dataItem['contents']
+                          });
+                        });
+                        this.noteService.noteList = this.noteList;
+                      }
+                  );
           }
         }
     );
-
-    this.newForm = false;
-    this.noteDisplay = false;
-    this.indexDisplay = -1;
-    this.noteService.getNotes(this.topicIndex, this.subTopicIndex);
-    this.noteList = this.noteService.noteList;
   }
 
   newNote() {
-    this.newForm= true;
+    this.newForm = true;
   }
 
   displayNote(noteIndex: number) {
-    this.noteDisplay = true;
-    this.indexDisplay = noteIndex;
+    if (noteIndex === this.indexDisplay) {
+      if (this.noteDisplay === true) {
+        this.noteDisplay = false;
+      } else {
+        this.noteDisplay = true;
+      }
+    } else {
+      this.noteDisplay = true;
+      this.indexDisplay = noteIndex;
+    }
   }
 
 }

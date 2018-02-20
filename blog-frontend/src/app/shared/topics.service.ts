@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { environment } from './../../environments/environment';
@@ -11,35 +12,15 @@ export class TopicsService {
 
   constructor(private http: Http) {}
 
-  addNewTopic(topic: {title: string, desc: string}) {
-    this.http.post(this.baseURL + '/topicsdb', topic)
-      .subscribe(
-        (response) => {
-          var data = response.json();
-          this.topicList.push({
-            title: data.title,
-            desc: data.desc,
-            "_id": data["_id"]
-          }
-          );
-        }
-      );
+  addNewTopic(topic: {title: string, desc: string}): Observable<any> {
+    return this.http.post(this.baseURL + '/topicsdb', topic)
+                    .map(response => response.json());
   }
 
-  getTopicList() {
+  getTopicList(): Observable<any> {
     this.topicList = [];
-    this.http.get(this.baseURL + '/topicsdb').subscribe(
-      (response) => {
-        response.json().forEach((topicItem) => {
-          this.topicList.push({
-            title: topicItem.title,
-            desc: topicItem.desc,
-            "_id": topicItem["_id"]
-          });
-        });
-      },
-      (error) => console.log(error)
-    );
+    return this.http.get(this.baseURL + '/topicsdb')
+                    .map(response => response.json());
   }
 
 }

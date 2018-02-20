@@ -5,12 +5,16 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-2 label-align">
-        <label for="title" class="control-label">Title:</label>
+        <label for="title"
+                class="control-label">
+                Title:
+        </label>
       </div>
       <div class="col-md-10">
         <input type="text" name="title" id="title"
                 formControlName="title"
-                class="form-control">
+                class="form-control"
+                placeholder="Title">
       </div>
     </div>
   </div>
@@ -18,12 +22,16 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-2 label-align">
-        <label for="desc" class="control-label">Description:</label>
+        <label for="desc"
+                class="control-label">
+                Description:
+        </label>
       </div>
       <div class="col-md-10">
         <textarea name="desc" id="desc" rows="8" cols="80"
             formControlName="desc"
-            class="form-control"></textarea>
+            class="form-control"
+            placeholder="Description"></textarea>
       </div>
     </div>
   </div>
@@ -34,18 +42,18 @@
     </div>
     <div class="col-md-10">
       <button type="submit"
-              class="btn btn-primary">
+              class="btn btn-primary general-button">
               Submit
       </button>
 
       <button type="button"
-              class="btn btn-info"
+              class="btn btn-info general-button"
               (click)="resetForm()">
               Clear
       </button>
 
       <button type="button"
-              class="btn btn-danger"
+              class="btn btn-danger general-button"
               (click)="cancelForm()">
               Cancel
       </button>

@@ -16,8 +16,8 @@ export class TopicFormComponent implements OnInit {
 
   constructor(private topicsService: TopicsService) {
     this.topicForm = new FormGroup({
-      'title': new FormControl('Title', Validators.required),
-      'desc': new FormControl('A brief description', Validators.required)
+      'title': new FormControl(null, Validators.required),
+      'desc': new FormControl(null, Validators.required)
     })
   }
 
@@ -26,10 +26,22 @@ export class TopicFormComponent implements OnInit {
 
   addNewTopic() {
     this.formValue = JSON.stringify(this.topicForm.value);
-    this.topicsService.addNewTopic({title: this.topicForm.value.title,
-                                    desc: this.topicForm.value.desc});
-    this.formDone = true;
-    this.formSubmitted.emit();
+    this.topicsService.addNewTopic(
+        {title: this.topicForm.value.title,
+         desc: this.topicForm.value.desc})
+              .subscribe(
+                (data) => {
+                  this.topicsService.topicList.push(
+                    {
+                      title: data.title,
+                      desc: data.desc,
+                      "_id": data["_id"]
+                    }
+                  );
+                  this.formDone = true;
+                  this.formSubmitted.emit();
+                }
+              );
   }
 
   clearTopicForm() {

@@ -58,7 +58,7 @@ var addNewSubTopic = (req, res) => {
 
 var addNewNote = (req, res) => {
   var topicId = req.params.topicid;
-  var subtopicId = req.params.subtopicid;
+  var subTopicId = req.params.subtopicid;
   var noteTitle = req.body.title;
   var noteLabels = Object.keys(req.body);
   var noteContents = [];
@@ -81,6 +81,7 @@ var addNewNote = (req, res) => {
   });
   var newNote = new Note({
     title: noteTitle,
+    subtopic: subTopicId,
     contents: noteContents
   });
   newNote.save()

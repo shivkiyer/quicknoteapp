@@ -1,72 +1,71 @@
-<h1>Quick Note App</h1>
+<div class="front-page-enclosure">
+  <app-header></app-header>
 
-<div class="row">
-  <div class="col-md-2">
+  <div class="main-content-box">
+    <div class="row">
 
-  </div>
+      <div class="col-md-12">
+        <h3>Contents of topic "{{ topicTitle }}" </h3>
+        <br>
+        <div class="topic-list"
+              *ngIf="subTopicsList.length>0">
+          <ol class="topic-listing">
+            <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
+              <span class="topic-title"
+                    (click)="displaySubTopic(subTIndex)">
+                    {{ subTItem.title }}
+              </span>
 
-  <div class="col-md-8">
-    <h3>Contents of Topic {{ topic }} </h3>
-    <br>
-    <div class="topic-list"
-          *ngIf="subTopicsList.length>0">
-      <ol class="topic-listing">
-        <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
-          <span class="topic-title"
-                (click)="displaySubTopic(subTIndex)">
-                {{ subTItem.title }}
-          </span>
+              <p *ngIf="subTIndex===subTopicOnDisplay">
+                {{ subTItem.desc }}
+              </p>
 
-          <p *ngIf="subTIndex===subTopicOnDisplay">
-            {{ subTItem.desc }}
-          </p>
+              <div class="space-above"
+                    *ngIf="subTIndex===subTopicOnDisplay">
 
-          <div class="space-above"
-                *ngIf="subTIndex===subTopicOnDisplay">
+                <button type="button"
+                        class="btn btn-primary general-button"
+                        (click)="openSubTopic(subTIndex)">
+                        Open
+                </button>
 
-            <button type="button"
-                    class="btn btn-primary"
-                    (click)="openSubTopic(subTIndex)">
-                    Open
-            </button>
+                <button type="button"
+                        class="btn btn-info general-button">
+                        Modify
+                </button>
 
-            <button type="button"
-                    class="btn btn-info">
-                    Modify
-            </button>
+                <button type="button"
+                        class="btn btn-danger general-button">
+                        Delete
+                </button>
+              </div>
 
-            <button type="button"
-                    class="btn btn-danger">
-                    Delete
-            </button>
-          </div>
+            </li>
+          </ol>
+        </div>
 
-        </li>
-      </ol>
+        <h5 *ngIf="subTopicsList.length===0">
+          No subtopics to display.
+        </h5>
+        <br>
+
+        <button type="button"
+                class="btn btn-primary general-button"
+                (click)="addNewSubTopic()"
+                *ngIf="!addNewForm">
+                Add new
+        </button>
+        <br>
+
+        <app-sub-topic-form [topicIndex]="topicIndex"
+                    (formSubmitted)="addNewForm=false"
+                    *ngIf="addNewForm">
+        </app-sub-topic-form>
+
+      </div>
+
     </div>
-
-    <h5 *ngIf="subTopicsList.length===0">
-      No subtopics to display.
-    </h5>
-    <br>
-
-    <button type="button"
-            class="btn btn-primary"
-            (click)="addNewSubTopic()"
-            *ngIf="!addNewForm">
-            Add new
-    </button>
-    <br>
-
-    <app-sub-topic-form [topic]="topic"
-                (formSubmitted)="addNewForm=false"
-                *ngIf="addNewForm">
-    </app-sub-topic-form>
-
   </div>
-
-  <div class="col-md-2">
-
-  </div>
-
 </div>
+
+<app-footer></app-footer>

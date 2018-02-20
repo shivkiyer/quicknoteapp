@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 import { environment } from './../../environments/environment';
 import { TopicsService } from './topics.service';
@@ -14,34 +16,14 @@ export class SubTopicsService {
               private topicsService: TopicsService) {}
 
   addSubTopic(topic: string,
-              subTopic: {title: string, desc: string}) {
-    this.http.post(this.baseURL+'/topicsdb' + '/' + topic, subTopic).subscribe(
-      (response) => {
-        var data = response.json();
-        this.subTopicsList.push({
-          title: data.title,
-          topic: topic,
-          desc: data.desc,
-          "_id": data["_id"]
-        });
-      }
-    );
+              subTopic: {title: string, desc: string}): Observable<any> {
+    return this.http.post(this.baseURL+'/topicsdb' + '/' + topic, subTopic)
+                    .map(response => response.json());
   }
 
-  getSubTopics(topicId: string) {
+  getSubTopics(topicId: string): Observable<any> {
     this.subTopicsList = [];
-    this.http.get(this.baseURL + '/topicsdb' + "/" + topicId)
-      .subscribe(
-        (response) => {
-          var data = response.json();
-          data.forEach((dataItem) => {
-            this.subTopicsList.push({
-              title: dataItem.title,
-              topic: topicId,
-              desc: dataItem.desc,
-              "_id": dataItem["_id"]
-            });
-        });
-    });
+    return this.http.get(this.baseURL + '/topicsdb' + "/" + topicId)
+              .map(response => response.json());
   }
 }

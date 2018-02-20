@@ -1,16 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
 
-body, html {
-  padding: 20px;
-  margin: 0;
-  background-color: rgb(229, 229, 229);
+/* You can add global styles to this file, and also import other style files */
+* {
+  width: 100%;
   box-sizing: border-box;
 }
 
 h1 {
   text-align: center;
-  margin-top: 0;
-  margin-bottom: 20px;
+}
+
+p {
+  font-size: 100%;
+}
+
+.front-page-enclosure {
+  background-color: rgb(155, 155, 155);
+  min-height: 650px;
+  height: auto;
+  position: relative;
+  overflow-y: visible;
+  padding-bottom: 50px;
+}
+
+.footer-box {
+  width: 100%;
+  background-color: black;
+  color: white;
+  font-size: 90%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+
+.main-content-box {
+  margin-top: 30px;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.front-image-container {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.front-image {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.front-image img {
+  max-height: 90%;
+  max-width: 90%;
+}
+
+.welcome-text-block {
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.login-block {
+  width: 50%;
+  margin: auto;
+}
+
+.space-above {
+  margin-top: 10px;
 }
 
 .url-link {
@@ -32,6 +88,7 @@ h1 {
   margin-left: 30px;
   outline: none;
   cursor: pointer;
+  max-width: 100px;
 }
 
 .general-button:active, .general-button:hover {
@@ -74,4 +131,10 @@ h1 {
 .topic-message {
   font-size: 125%;
   margin-left: 20px;
+}
+
+.note-display-box {
+  padding-left: 30px;
+  padding-top: 15px;
+  padding-right: 10px;
 }

@@ -16,6 +16,8 @@ import { NoteFormComponent } from './note/note-form/note-form.component';
 import { TopicsService } from './shared/topics.service';
 import { SubTopicsService } from './shared/sub-topics.service';
 import { NoteService } from './shared/note.service';
+import { AppHeaderComponent } from './page-sections/app-header/app-header.component';
+import { AppFooterComponent } from './page-sections/app-footer/app-footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { NoteService } from './shared/note.service';
     SubTopicComponent,
     SubTopicFormComponent,
     NoteComponent,
-    NoteFormComponent
+    NoteFormComponent,
+    AppHeaderComponent,
+    AppFooterComponent
   ],
   imports: [
     BrowserModule,

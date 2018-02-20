@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 import { TopicsService } from './topics.service';
 import { SubTopicsService } from './sub-topics.service';
@@ -18,48 +20,24 @@ export class NoteService {
 
   addNote(topicIndex: number,
           subTopicIndex: number,
-          noteForm: any) {
+          noteForm: any): Observable<any> {
 
     var topicId = this.topicsService.topicList[topicIndex]._id;
     var subTopicId = this.subTopicsService.subTopicsList[subTopicIndex]._id;
 
-    this.http.post(this.baseURL + '/topicsdb' + '/' + topicId + '/' + subTopicId, noteForm)
-      .subscribe(
-        (response: Response) => {
-          var data = response.json();
-          this.noteList.push(
-            {
-              title: data['title'],
-              subTopic: data['subTopic'],
-              '_id': data['_id'],
-              contents: data['contents']
-            }
-          );
-        }
-      );
+    return this.http.post(this.baseURL + '/topicsdb' + '/' + topicId + '/' + subTopicId, noteForm)
+                    .map(response => response.json());
   }
 
   getNotes(topicIndex:number,
-            subTopicIndex: number) {
+            subTopicIndex: number): Observable<any> {
     this.noteList = [];
     if (this.topicsService.topicList.length>0 &&
         this.subTopicsService.subTopicsList.length>0) {
           let topicId = this.topicsService.topicList[topicIndex]['_id'];
           let subTopicId = this.subTopicsService.subTopicsList[subTopicIndex]['_id'];
-          this.http.get(this.baseURL + '/topicsdb' + '/' + topicId + '/' + subTopicId)
-            .subscribe(
-              (response: Response) => {
-                var data = response.json();
-                data.forEach((dataItem) => {
-                  this.noteList.push({
-                    title: dataItem['title'],
-                    subTopic: dataItem['subTopic'],
-                    '_id': dataItem['_id'],
-                    contents: dataItem['contents']
-                  });
-                });
-              }
-          );
+          return this.http.get(this.baseURL + '/topicsdb' + '/' + topicId + '/' + subTopicId)
+                          .map(response => response.json());
     }
   }
 }
