@@ -20,6 +20,7 @@ export class TopicPageComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.topicsService.getTopicList()
           .subscribe(
             (data) => {

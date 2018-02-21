@@ -11,7 +11,7 @@ import { SubTopicsService } from './../shared/sub-topics.service';
 })
 export class SubTopicComponent implements OnInit {
 
-  topicIndex: number;
+  topicIndex: number = -1;
   subTopicOnDisplay: number;
   topicTitle: string;
   topicId: string;
@@ -24,6 +24,7 @@ export class SubTopicComponent implements OnInit {
               private subTopicsService: SubTopicsService) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.route.params.subscribe(
       (params: Params) => {
         this.topicIndex = +params['id'] - 1;

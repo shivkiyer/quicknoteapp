@@ -76,22 +76,23 @@
 
   </div>
 
-  <div class="row">
+  <div class="note-button-block">
+    <div class="row">
+      <div class="col-md-12">
+        <br>
+        To add more inputs, click on the buttons below. <br>
+        <button type="button"
+                class="btn btn-primary general-button"
+                (click)="addText()">
+                Add text
+        </button>
 
-    <div class="col-md-12">
-      <br>
-      To add more inputs, click on the buttons below. <br>
-      <button type="button"
-              class="btn btn-primary general-button"
-              (click)="addText()">
-              Add text
-      </button>
-
-      <button type="button"
-              class="btn btn-primary general-button"
-              (click)="addCode()">
-              Add code
-      </button>
+        <button type="button"
+                class="btn btn-primary general-button"
+                (click)="addCode()">
+                Add code
+        </button>
+      </div>
     </div>
   </div>
 
@@ -101,34 +102,36 @@
     <button type="submit"
             class="btn btn-success general-button">
       Submit
-    </button>
+    </button> Don't forget to click here to save the form.
   </div>
 
 
-  <div *ngIf="noteForm.dirty&&noteForm.valid">
+  <div *ngIf="noteForm.dirty">
     <br>
 
-    <div class="row">
-      <h3>Preview of the note</h3>
-
-      <div class="col-md-12 para-font">
-        <strong>{{ noteForm.value.title }}</strong>
-      </div>
-    </div>
-    <br>
-
-    <div *ngFor="let formItem of formContents; let itemIndex=index">
-
+    <div class="note-preview-block">
       <div class="row">
-          <div class="col-md-12 para-font">
-            <div *ngIf="formKeys[itemIndex]==='code'">
-              <pre>{{ noteForm.value[formItem] }}</pre>
+        <h3>Preview of the note</h3>
+
+        <div class="col-md-12 para-font">
+          <strong>{{ noteForm.value.title }}</strong>
+        </div>
+      </div>
+      <br>
+
+      <div *ngFor="let formItem of formContents; let itemIndex=index">
+
+        <div class="row">
+            <div class="col-md-12 para-font">
+              <div *ngIf="formKeys[itemIndex]==='code'">
+                <pre>{{ noteForm.value[formItem] }}</pre>
+              </div>
+              <div *ngIf="formKeys[itemIndex]==='text'">
+                {{ noteForm.value[formItem] }}
+              </div>
+              <br>
             </div>
-            <div *ngIf="formKeys[itemIndex]==='text'">
-              {{ noteForm.value[formItem] }}
-            </div>
-            <br>
-          </div>
+        </div>
       </div>
     </div>
 

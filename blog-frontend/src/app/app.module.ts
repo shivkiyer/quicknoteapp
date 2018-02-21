@@ -18,6 +18,7 @@ import { SubTopicsService } from './shared/sub-topics.service';
 import { NoteService } from './shared/note.service';
 import { AppHeaderComponent } from './page-sections/app-header/app-header.component';
 import { AppFooterComponent } from './page-sections/app-footer/app-footer.component';
+import { PageTrackerComponent } from './page-sections/page-tracker/page-tracker.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AppFooterComponent } from './page-sections/app-footer/app-footer.compon
     NoteComponent,
     NoteFormComponent,
     AppHeaderComponent,
-    AppFooterComponent
+    AppFooterComponent,
+    PageTrackerComponent
   ],
   imports: [
     BrowserModule,

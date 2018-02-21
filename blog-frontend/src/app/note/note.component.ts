@@ -29,6 +29,7 @@ export class NoteComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.route.params
       .subscribe(
         (params: Params) => {

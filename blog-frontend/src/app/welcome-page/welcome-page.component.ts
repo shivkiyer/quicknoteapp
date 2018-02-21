@@ -13,6 +13,7 @@ export class WelcomePageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.userForm = new FormGroup({
       'username': new FormControl(),
       'password': new FormControl()

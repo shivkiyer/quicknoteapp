@@ -10,9 +10,9 @@ h1 {
   text-align: center;
 }
 
-p {
+/*p {
   font-size: 100%;
-}
+}*/
 
 .front-page-enclosure {
   background-color: rgb(155, 155, 155);
@@ -137,4 +137,72 @@ p {
   padding-left: 30px;
   padding-top: 15px;
   padding-right: 10px;
+}
+
+.note-button-block {
+  padding-left: 300px;
+}
+
+.note-preview-block {
+  width: 75%;
+  margin-left: 200px;
+}
+
+.top-header-bar {
+  width: 100%;
+  padding-bottom: 0;
+}
+
+.header-navigation-bar {
+  list-style-type: none;
+  background-color: rgb(216, 216, 216);
+  padding: 10px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.header-navigation-bar li {
+  display: inline;
+  /*float: left;*/
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.nav-right-links {
+  /*display: inline;*/
+  /*float: right;*/
+}
+
+.header-navigation-bar li:hover {
+  background-color: white;
+}
+
+.header-navigation-bar a {
+  color: rgb(55, 55, 55);
+  text-decoration: none;
+}
+
+.nav-right-links {
+  float: right;
+}
+
+.page-tracker-panel {
+  margin-top: 0;
+  padding-left: 20px;
+}
+
+.page-tracker-section {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(200, 200, 200);
+  margin-right: 5px;
+}
+
+.page-tracker-section:hover {
+  background-color: white;
+  cursor: pointer;
 }

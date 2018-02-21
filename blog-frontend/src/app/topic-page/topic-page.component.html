@@ -13,9 +13,9 @@
           <ol class="topic-listing"
               *ngIf="topicList.length>0&&displaySub">
             <li *ngFor="let topic of topicList; let topicIndex = index">
-              <span class="topic-title" (click)="displayTopic(topicIndex)">
+              <strong><span class="topic-title" (click)="displayTopic(topicIndex)">
                 {{ topic.title }}
-              </span>
+              </span></strong>
               <p *ngIf="topicIndex===topicOnDisplay">
                 {{ topic.desc }} <br>
               </p>

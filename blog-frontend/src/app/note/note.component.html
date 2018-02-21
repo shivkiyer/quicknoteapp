@@ -2,6 +2,9 @@
   <app-header></app-header>
 
   <div class="main-content-box">
+    <app-page-tracker [topicIndex]="topicIndex"
+                      [subTopicIndex]="subTopicIndex">
+    </app-page-tracker>
 
     <div class="row"
           *ngIf="!newForm">
@@ -14,10 +17,10 @@
         <div *ngIf="noteList&&noteList.length>0">
           <ol class="topic-listing">
             <li *ngFor="let noteItem of noteList; let noteIndex=index">
-              <span class="topic-title"
+              <strong><span class="topic-title"
                     (click)="displayNote(noteIndex)">
                 {{ noteItem.title }}
-              </span>
+              </span></strong>
               <div class="note-display-box"
                     *ngIf="noteIndex===indexDisplay">
                   <div class="row"
@@ -56,8 +59,9 @@
     </div>
 
     <div class="row"
-          *ngIf="newForm&&!noteDisplay">
+          *ngIf="newForm">
       <h2>Creating new note under topic "{{ subTopicTitle }}"</h2>
+      <br>
       <div class="col-md-12">
         <app-note-form [topicIndex]="topicIndex"
                         [subTopicIndex]="subTopicIndex"

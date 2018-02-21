@@ -2,6 +2,9 @@
   <app-header></app-header>
 
   <div class="main-content-box">
+    <app-page-tracker [topicIndex]="topicIndex"
+                      [subTopicIndex]="-1">
+    </app-page-tracker>
     <div class="row">
 
       <div class="col-md-12">
@@ -11,10 +14,10 @@
               *ngIf="subTopicsList.length>0">
           <ol class="topic-listing">
             <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
-              <span class="topic-title"
+              <strong><span class="topic-title"
                     (click)="displaySubTopic(subTIndex)">
                     {{ subTItem.title }}
-              </span>
+              </span></strong>
 
               <p *ngIf="subTIndex===subTopicOnDisplay">
                 {{ subTItem.desc }}
@@ -44,9 +47,9 @@
           </ol>
         </div>
 
-        <h5 *ngIf="subTopicsList.length===0">
+        <h4 *ngIf="subTopicsList.length===0">
           No subtopics to display.
-        </h5>
+        </h4>
         <br>
 
         <button type="button"
