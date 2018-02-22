@@ -13,10 +13,16 @@ export class SubTopicComponent implements OnInit {
 
   topicIndex: number = -1;
   subTopicOnDisplay: number;
+  displayPage: boolean = false;
   topicTitle: string;
   topicId: string;
   addNewForm: boolean = false;
   subTopicsList: {title: string, topic: string, desc: string, "_id": string}[] = [];
+  deleteError: boolean;
+  deleteMessage: string;
+  deleteIndex: number;
+  modifyStatus: boolean;
+  modifyIndex: number;
 
   constructor(private topicsService: TopicsService,
               private router: Router,
@@ -25,6 +31,9 @@ export class SubTopicComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.displayPage = false;
+    this.modifyStatus = false;
+    this.modifyIndex = -1;
     this.route.params.subscribe(
       (params: Params) => {
         this.topicIndex = +params['id'] - 1;
@@ -42,6 +51,7 @@ export class SubTopicComponent implements OnInit {
                         "_id": dataItem["_id"]
                         });
                     });
+                    this.displayPage = true;
                   }
                 )
         } else {
@@ -72,6 +82,28 @@ export class SubTopicComponent implements OnInit {
     const tIndex = this.topicIndex + 1;
     const subTIndex = subTopicIndex + 1;
     this.router.navigate(['/topics/',tIndex, subTIndex]);
+  }
+
+  deleteSubTopic(subTopicIndex: number) {
+    this.deleteError = false;
+    this.subTopicsService.deleteSubTopic(this.topicIndex, subTopicIndex)
+        .subscribe(
+          () => {
+            this.subTopicsList = this.subTopicsService.subTopicsList;
+          },
+          (error) => {
+            this.deleteError = true;
+            this.deleteMessage = error.json().message;
+            this.deleteIndex = subTopicIndex;
+          }
+        );
+  }
+
+  modifySubTopic(subTopicIndex: number) {
+    this.modifyStatus = true;
+    this.modifyIndex = subTopicIndex;
+    this.addNewForm = true;
+    this.subTopicOnDisplay = -1;
   }
 
 }

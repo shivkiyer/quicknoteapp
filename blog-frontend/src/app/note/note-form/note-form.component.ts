@@ -16,6 +16,8 @@ export class NoteFormComponent implements OnInit {
 
   @Input() topicIndex: number;
   @Input() subTopicIndex: number;
+  @Input() modifyStatus: boolean;
+  @Input() modifyIndex: number;
 
   noteForm = new FormGroup({
     title: new FormControl(null, Validators.required)
@@ -24,49 +26,88 @@ export class NoteFormComponent implements OnInit {
   constructor(private noteService: NoteService) {}
 
   ngOnInit() {
+    var noteData
     this.formKeys = [];
     this.formContents = [];
     this.formContentIndex = 0;
+    if (this.modifyStatus) {
+      noteData = this.noteService.noteList[this.modifyIndex];
+      this.noteForm = new FormGroup({
+        title: new FormControl(noteData.title, Validators.required)
+      });
+      if (noteData.contents) {
+        noteData.contents.forEach((item, itemIndex) => {
+          if (item.itemType === 'text') {
+            this.addText(item.itemData);
+          }
+          if (item.itemType === 'code') {
+            this.addCode(item.itemData);
+          }
+        });
+      }
+    }
   }
 
   noteSubmit() {
-    this.noteService.addNote(this.topicIndex, this.subTopicIndex, this.noteForm.value)
-    .subscribe(
-      (data) => {
-        this.noteService.noteList.push(
-          {
-            title: data['title'],
-            subTopic: data['subTopicId'],
-            '_id': data['_id'],
-            contents: data['contents']
-          }
-        );
-        this.formSubmitted.emit();
-      }
-    );
+    if (this.modifyStatus) {
+      this.noteService.changeOldNote(this.topicIndex, this.subTopicIndex,
+                                      this.modifyIndex, this.noteForm.value)
+          .subscribe(
+            () => {
+              this.formSubmitted.emit();
+            }
+          );
+    } else {
+      this.noteService.addNote(this.topicIndex, this.subTopicIndex, this.noteForm.value)
+          .subscribe(
+            (data) => {
+              this.noteService.noteList.push(
+                {
+                  title: data['title'],
+                  subTopic: data['subTopicId'],
+                  '_id': data['_id'],
+                  contents: data['contents']
+                }
+              );
+              this.formSubmitted.emit();
+            }
+          );
+    }
   }
 
-  addText() {
+  addText(textValue: any) {
     this.formKeys.push('text');
     var textKey = 'text' + this.formContentIndex;
     this.formContents.push(textKey);
-    this.noteForm.addControl(
-      textKey,
-      new FormControl(null, Validators.required)
-    );
-
+    if (textValue === undefined) {
+      this.noteForm.addControl(
+        textKey,
+        new FormControl(null, Validators.required)
+      );
+    } else {
+      this.noteForm.addControl(
+        textKey,
+        new FormControl(textValue, Validators.required)
+      );
+    }
     this.formContentIndex += 1;
   }
 
-  addCode() {
+  addCode(codeValue: any) {
     this.formKeys.push('code');
     var codeKey = 'code' + this.formContentIndex;
     this.formContents.push(codeKey);
-    this.noteForm.addControl(
-      codeKey,
-      new FormControl(null, Validators.required)
-    );
-
+    if (codeValue === undefined) {
+      this.noteForm.addControl(
+        codeKey,
+        new FormControl(null, Validators.required)
+      );
+    } else {
+      this.noteForm.addControl(
+        codeKey,
+        new FormControl(codeValue, Validators.required)
+      );
+    }
     this.formContentIndex += 1;
   }
 

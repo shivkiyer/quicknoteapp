@@ -17,7 +17,7 @@ export class SubTopicsService {
 
   addSubTopic(topic: string,
               subTopic: {title: string, desc: string}): Observable<any> {
-    return this.http.post(this.baseURL+'/topicsdb' + '/' + topic, subTopic)
+    return this.http.post(this.baseURL +'/topicsdb' + '/' + topic, subTopic)
                     .map(response => response.json());
   }
 
@@ -26,4 +26,29 @@ export class SubTopicsService {
     return this.http.get(this.baseURL + '/topicsdb' + "/" + topicId)
               .map(response => response.json());
   }
+
+  deleteSubTopic(topicIndex: number, subTopicIndex: number): Observable<any> {
+    var topicId = this.topicsService.topicList[topicIndex]._id;
+    var subTopicId = this.subTopicsList[subTopicIndex]._id;
+    return this.http.delete(this.baseURL + '/topicsdb/' + topicId + '/' + subTopicId)
+        .map(
+          (response) => {
+            this.subTopicsList.splice(subTopicIndex, 1);
+            return;
+          }
+        );
+  }
+
+  changeOldSubTopic(topicId: string, subTopicIndex: number, subTopicData: any): Observable<any> {
+    var subTopicId = this.subTopicsList[subTopicIndex]._id;
+    return this.http.patch(this.baseURL + '/topicsdb/' + topicId + '/' + subTopicId, subTopicData)
+        .map(
+          () => {
+            this.subTopicsList[subTopicIndex].title = subTopicData.title;
+            this.subTopicsList[subTopicIndex].desc = subTopicData.desc;
+            return;
+          }
+        )
+  }
+
 }

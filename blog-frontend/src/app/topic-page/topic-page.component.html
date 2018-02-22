@@ -26,14 +26,20 @@
                         Open
                 </button>
                 <button type="button"
-                        class="btn btn-info general-button">
+                        class="btn btn-info general-button"
+                        (click)="modifyTopic(topicIndex)">
                         Modify
                 </button>
                 <button type="button"
-                        class="btn btn-danger general-button">
+                        class="btn btn-danger general-button"
+                        (click)="deleteTopic(topicIndex)">
                         Delete
                 </button>
               </div>
+              <p *ngIf="deleteError&&deleteIndex===topicIndex"
+                  style="color:red">
+                  {{ deleteMessage }}
+              </p>
 
             </li>
           </ol>
@@ -53,7 +59,11 @@
                 Add topic
         </button>
 
-        <app-topic-form *ngIf="newTopic" (formSubmitted)="newTopic=false"></app-topic-form>
+        <app-topic-form *ngIf="newTopic"
+                        (formSubmitted)="newTopic=false; modifyStatus=false"
+                        [modifyStatus]="modifyStatus"
+                        [modifyIndex]="modifyIndex">
+        </app-topic-form>
       </div>
 
     </div>

@@ -42,8 +42,15 @@
     </div>
     <div class="col-md-10">
       <button type="submit"
-              class="btn btn-primary general-button">
+              class="btn btn-primary general-button"
+              *ngIf="!modifyStatus">
               Submit
+      </button>
+
+      <button type="submit"
+              class="btn btn-primary general-button"
+              *ngIf="modifyStatus">
+              Change
       </button>
 
       <button type="button"

@@ -1,7 +1,8 @@
 <div class="front-page-enclosure">
   <app-header></app-header>
 
-  <div class="main-content-box">
+  <div class="main-content-box"
+        *ngIf="displayPage">
     <app-page-tracker [topicIndex]="topicIndex"
                       [subTopicIndex]="-1">
     </app-page-tracker>
@@ -33,15 +34,20 @@
                 </button>
 
                 <button type="button"
-                        class="btn btn-info general-button">
+                        class="btn btn-info general-button"
+                        (click)="modifySubTopic(subTIndex)">
                         Modify
                 </button>
 
                 <button type="button"
-                        class="btn btn-danger general-button">
+                        class="btn btn-danger general-button"
+                        (click)="deleteSubTopic(subTIndex)">
                         Delete
                 </button>
               </div>
+              <p *ngIf="deleteError&&deleteIndex===subTIndex"
+                  style="color:red">{{ deleteMessage }}
+              </p>
 
             </li>
           </ol>
@@ -61,7 +67,9 @@
         <br>
 
         <app-sub-topic-form [topicIndex]="topicIndex"
-                    (formSubmitted)="addNewForm=false"
+                    (formSubmitted)="addNewForm=false; modifyStatus=false"
+                    [modifyStatus]="modifyStatus"
+                    [modifyIndex]="modifyIndex"
                     *ngIf="addNewForm">
         </app-sub-topic-form>
 

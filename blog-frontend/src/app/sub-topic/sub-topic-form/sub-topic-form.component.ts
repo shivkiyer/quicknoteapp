@@ -12,6 +12,8 @@ import { SubTopicsService } from './../../shared/sub-topics.service';
 export class SubTopicFormComponent implements OnInit {
   subTopicForm: FormGroup;
   @Input() topicIndex: string;
+  @Input() modifyStatus: boolean;
+  @Input() modifyIndex: number;
   topicTitle: string;
   topicId: string;
   @Output() formSubmitted = new EventEmitter<void>();
@@ -27,21 +29,36 @@ export class SubTopicFormComponent implements OnInit {
   ngOnInit() {
     this.topicTitle = this.topicsService.topicList[this.topicIndex].title;
     this.topicId = this.topicsService.topicList[this.topicIndex]["_id"];
+    if (this.modifyStatus) {
+      this.subTopicForm = new FormGroup({
+        'title': new FormControl(this.subTopicsService.subTopicsList[this.modifyIndex].title, Validators.required),
+        'desc': new FormControl(this.subTopicsService.subTopicsList[this.modifyIndex].desc, Validators.required)
+      });
+    }
   }
 
   addSubTopic() {
-    this.subTopicsService.addSubTopic(this.topicId, this.subTopicForm.value)
+    if (this.modifyStatus) {
+      this.subTopicsService.changeOldSubTopic(this.topicId, this.modifyIndex, this.subTopicForm.value)
           .subscribe(
-              (data) => {
-                this.subTopicsService.subTopicsList.push({
-                  title: data.title,
-                  topic: this.topicId,
-                  desc: data.desc,
-                  "_id": data["_id"]
-                  });
-                  this.formSubmitted.emit();
-              }
+            () => {
+              this.formSubmitted.emit();
+            }
           );
+    } else {
+      this.subTopicsService.addSubTopic(this.topicId, this.subTopicForm.value)
+            .subscribe(
+                (data) => {
+                  this.subTopicsService.subTopicsList.push({
+                    title: data.title,
+                    topic: this.topicId,
+                    desc: data.desc,
+                    "_id": data["_id"]
+                    });
+                    this.formSubmitted.emit();
+                }
+            );
+    }
   }
 
   cancelForm() {

@@ -1,7 +1,8 @@
 <div class="front-page-enclosure">
   <app-header></app-header>
 
-  <div class="main-content-box">
+  <div class="main-content-box"
+        *ngIf="displayPage">
     <app-page-tracker [topicIndex]="topicIndex"
                       [subTopicIndex]="subTopicIndex">
     </app-page-tracker>
@@ -37,6 +38,23 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <button type="button"
+                                class="btn btn-primary general-button"
+                                (click)="modifyNote(noteIndex)">
+                                Modify
+                        </button>
+                      </div>
+                      <div class="col-xs-6">
+                        <button type="button"
+                                class="btn btn-danger general-button"
+                                (click)="deleteNote(noteIndex)">
+                                Delete
+                        </button>
+                      </div>
+                    </div>
+
                   </div>
               </div>
             </li>
@@ -65,7 +83,9 @@
       <div class="col-md-12">
         <app-note-form [topicIndex]="topicIndex"
                         [subTopicIndex]="subTopicIndex"
-                        (formSubmitted)="newForm=false">
+                        (formSubmitted)="newForm=false; modifyStatus=false"
+                        [modifyStatus]="modifyStatus"
+                        [modifyIndex]="modifyIndex">
         </app-note-form>
       </div>
 

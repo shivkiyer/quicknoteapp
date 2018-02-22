@@ -40,8 +40,16 @@
   <button type="submit"
           name="submit"
           class="btn btn-primary general-button"
-          [disabled]="topicForm.touched&&topicForm.invalid">
+          [disabled]="topicForm.touched&&topicForm.invalid"
+          *ngIf="!modifyStatus">
           Submit
+  </button>
+  <button type="submit"
+          name="submit"
+          class="btn btn-primary general-button"
+          [disabled]="topicForm.touched&&topicForm.invalid"
+          *ngIf="modifyStatus">
+          Change
   </button>
   <button type="button"
           name="clear"

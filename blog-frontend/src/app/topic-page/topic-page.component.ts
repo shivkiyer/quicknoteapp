@@ -12,6 +12,11 @@ export class TopicPageComponent implements OnInit {
 
   displaySub = false;
   newTopic = false;
+  deleteError: boolean;
+  deleteMessage: string;
+  deleteIndex: number;
+  modifyStatus = false;
+  modifyIndex = -1;
 
   topicList: {title: string, desc: string}[] = [];
   topicOnDisplay: number = -1;
@@ -57,4 +62,27 @@ export class TopicPageComponent implements OnInit {
   openTopic(topicIndex: number) {
     this.router.navigate(['/topics', topicIndex + 1]);
   }
+
+  deleteTopic(topicIndex: number) {
+    this.deleteError = false;
+    this.topicsService.deleteTopic(topicIndex)
+        .subscribe(
+          () => {
+            this.topicList = this.topicsService.topicList;
+          },
+          (error) => {
+            this.deleteError = true;
+            this.deleteMessage = error.json().message;
+            this.deleteIndex = topicIndex;
+          }
+        );
+  }
+
+  modifyTopic(topicIndex: number) {
+    this.modifyStatus = true;
+    this.modifyIndex = topicIndex;
+    this.newTopic = true;
+    this.topicOnDisplay = -1;
+  }
+
 }

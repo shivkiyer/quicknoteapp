@@ -40,4 +40,30 @@ export class NoteService {
                           .map(response => response.json());
     }
   }
+
+  deleteNote(topicIndex: number,
+              subTopicIndex: number,
+              noteIndex: number): Observable<any> {
+    var topicId = this.topicsService.topicList[topicIndex]._id;
+    var subTopicId = this.subTopicsService.subTopicsList[subTopicIndex]._id;
+    var noteId = this.noteList[noteIndex]._id;
+    return this.http.delete(this.baseURL + '/topicsdb/' + topicId + '/' + subTopicId + '/' + noteId);
+  }
+
+  changeOldNote(topicIndex: number, subTopicIndex: number,
+                noteIndex: number, noteData: any): Observable<any> {
+    var topicId = this.topicsService.topicList[topicIndex]._id;
+    var subTopicId = this.subTopicsService.subTopicsList[subTopicIndex]._id;
+    var noteId = this.noteList[noteIndex]._id;
+    return this.http.patch(this.baseURL + '/topicsdb/' + topicId + '/' + subTopicId + '/' + noteId, noteData)
+        .map(
+          (response) => {
+            let data = response.json();
+            this.noteList[noteIndex].title = data.title;
+            this.noteList[noteIndex].contents = data.contents;
+            return;
+          }
+        );
+  }
+
 }

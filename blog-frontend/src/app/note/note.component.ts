@@ -11,6 +11,7 @@ import { NoteService } from './../shared/note.service';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
+  displayPage: boolean = false;
   topicIndex: number;
   subTopicIndex: number;
   topicId: string;
@@ -21,6 +22,8 @@ export class NoteComponent implements OnInit {
   noteList:any[] = [];
   noteDisplay: boolean = false;
   indexDisplay: number = -1;
+  modifyStatus: boolean;
+  modifyIndex: number;
 
   constructor(private route: ActivatedRoute,
               private topicsService: TopicsService,
@@ -30,6 +33,9 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
     window.scrollTo(0, 0);
+    this.displayPage = false;
+    this.modifyIndex = -1;
+    this.modifyStatus = false;
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -60,6 +66,7 @@ export class NoteComponent implements OnInit {
                           });
                         });
                         this.noteService.noteList = this.noteList;
+                        this.displayPage = true;
                       }
                   );
           }
@@ -82,6 +89,27 @@ export class NoteComponent implements OnInit {
       this.noteDisplay = true;
       this.indexDisplay = noteIndex;
     }
+  }
+
+  deleteNote(noteIndex: number) {
+    this.noteService.deleteNote(this.topicIndex, this.subTopicIndex, noteIndex)
+          .subscribe(
+            (response) => {
+              this.noteService.noteList.splice(noteIndex, 1);
+              this.noteDisplay = false;
+              this.indexDisplay = -1;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+  }
+
+  modifyNote(noteIndex: number) {
+    this.modifyStatus = true;
+    this.modifyIndex = noteIndex;
+    this.newForm = true;
+    this.indexDisplay = -1;
   }
 
 }

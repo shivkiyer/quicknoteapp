@@ -61,22 +61,33 @@ var addNewNote = (req, res) => {
   var subTopicId = req.params.subtopicid;
   var noteTitle = req.body.title;
   var noteLabels = Object.keys(req.body);
+  noteLabels.splice(noteLabels.indexOf('title'),1);
   var noteContents = [];
   noteLabels.forEach((item) => {
     if (item.slice(0, 4) === 'text' || item.slice(0, 4) === 'code') {
       noteContents.push({});
     }
   });
+  for (let iIndex=0; iIndex<noteLabels.length; iIndex++) {
+    for (let jIndex=iIndex+1; jIndex<noteLabels.length; jIndex++) {
+      if (parseInt(noteLabels[iIndex].slice(4,5)) >  parseInt(noteLabels[jIndex].slice(4,5))) {
+        let temp = noteLabels[iIndex];
+        noteLabels[iIndex] = noteLabels[jIndex];
+        noteLabels[jIndex] = temp;
+      }
+    }
+  }
+  let countIndex = 0;
   noteLabels.forEach((item) => {
     if (item.slice(0, 4)==='text') {
-      let iIndex = parseInt(item.slice(4, 5));
-      noteContents[iIndex]['itemType'] = 'text';
-      noteContents[iIndex]['itemData'] = req.body[item];
+      noteContents[countIndex]['itemType'] = 'text';
+      noteContents[countIndex]['itemData'] = req.body[item];
+      countIndex += 1;
     }
     if (item.slice(0, 4)==='code') {
-      let iIndex = parseInt(item.slice(4, 5));
-      noteContents[iIndex]['itemType'] = 'code';
-      noteContents[iIndex]['itemData'] = req.body[item];
+      noteContents[countIndex]['itemType'] = 'code';
+      noteContents[countIndex]['itemData'] = req.body[item];
+      countIndex += 1;
     }
   });
   var newNote = new Note({

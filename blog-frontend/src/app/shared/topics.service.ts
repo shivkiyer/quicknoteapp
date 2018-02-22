@@ -23,4 +23,27 @@ export class TopicsService {
                     .map(response => response.json());
   }
 
+  deleteTopic(topicIndex): Observable<any> {
+    var topicId = this.topicList[topicIndex]._id;
+    return this.http.delete(this.baseURL + '/topicsdb/' + topicId)
+      .map(
+        (response) => {
+          this.topicList.splice(topicIndex, 1);
+          return;
+        }
+      )
+  }
+
+  changeOldTopic(topicIndex: number, topicData: any): Observable<any> {
+    var topicId = this.topicList[topicIndex]._id;
+    return this.http.patch(this.baseURL + '/topicsdb/' + topicId, topicData)
+      .map(
+        () => {
+          this.topicList[topicIndex].title = topicData.title;
+          this.topicList[topicIndex].desc = topicData.desc;
+          return;
+        }
+      );
+  }
+
 }
