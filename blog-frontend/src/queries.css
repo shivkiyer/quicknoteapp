@@ -1,0 +1,88 @@
+@media only screen and (max-width: 1023px) {
+    .main-content-box {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+}
+
+@media only screen and (max-width: 767px) {
+    .row {
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+
+    .main-content-box {
+      padding-left: 10px;
+      padding-right: 5px;
+    }
+
+    .front-image-container {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .front-image img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    .welcome-text-block {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .login-block {
+      width: 70%;
+      margin: auto;
+    }
+}
+
+
+@media only screen and (max-width: 532px) {
+  .login-block {
+    width: 90%;
+    margin: auto;
+  }
+
+  .general-button {
+    margin-left: 5px;
+    max-width: 100px;
+  }
+
+  .main-content-box {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .topic-listing {
+    padding-left: 20px;
+  }
+
+  li button {
+    margin-left: 5px;
+  }
+}
+
+
+@media only screen and (max-width: 532px) {
+  .space-above button:first-of-type {
+    margin-left: -10px;
+  }
+
+  .general-button {
+    max-width: 80px;
+  }
+
+  .subtopic-buttons {
+    margin-left: -15px !important;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .note-display-box {
+    padding-left: 5px;
+    padding-top: 15px;
+    padding-right: 5px;
+  }
+}
