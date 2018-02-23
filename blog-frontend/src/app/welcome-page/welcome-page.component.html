@@ -9,84 +9,82 @@
 
   <div class="main-content-box">
 
-    <div class="row">
-      <div class="front-image-container">
-        <div class="col-xs-6">
-          <div class="front-image">
-            <img src="./assets/img/NoSQL.jpg" alt="Database">
+      <div class="row">
+        <div class="front-image-container">
+          <div class="col-xs-6">
+            <div class="front-image">
+              <img src="./assets/img/NoSQL.jpg" alt="Database">
+            </div>
           </div>
-        </div>
-        <div class="col-xs-6">
-          <div class="front-image">
-            <img src="./assets/img/mean_stack.png" alt="Database">
+          <div class="col-xs-6">
+            <div class="front-image">
+              <img src="./assets/img/mean_stack.png" alt="Database">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="welcome-text-block">
-        <p>Welcome to the quicknote app for developers that lets you create collections of notes of any topic of software organizing them the way you like. Bring clippets of text and code from blogs, Stack Overflow and every other forum into a searchable database. Try it out as a guest to check existing databases and register to create your own.</p>
+
+      <div class="row">
+        <div class="welcome-text-block">
+          <p>Welcome to the quicknote app for developers that lets you create collections of notes of any topic of software organizing them the way you like. Bring clippets of text and code from blogs, Stack Overflow and every other forum into a searchable database. Try it out as a guest to check existing databases and register to create your own.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="login-block">
-
-      <form [formGroup]="userForm" (ngSubmit)="onLogin()">
-        <div class="row">
-          <div class="form-group">
-            <div class="col-xs-4 text-right">
-              <label for="username"
-                      class="control-label">
-                      Username
-              </label>
-            </div>
-            <div class="col-xs-8">
-              <input type="text"
-                      id="username"
-                      formControlName="username"
-                      placeholder="Username">
-            </div>
-          </div>
-        </div>
-        <div class="row space-above">
-          <div class="form-group">
-            <div class="col-xs-4 text-right">
-              <label for="password"
-                      class="control-label">
-                      Password
-              </label>
-            </div>
-            <div class="col-xs-8">
-              <input type="password"
-                      id="password"
-                      formControlName="password"
-                      placeholder="Password">
+      <div class="login-block">
+        <form [formGroup]="userForm" (ngSubmit)="onLogin()">
+          <div class="row">
+            <div class="form-group">
+              <div class="col-xs-4 text-right">
+                <label for="username"
+                        class="control-label">
+                        Username
+                </label>
+              </div>
+              <div class="col-xs-8">
+                <input type="text"
+                        id="username"
+                        formControlName="username"
+                        placeholder="Username">
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row space-above">
-          <div class="col-xs-6">
-            <button type="submit"
-                    class="btn btn-success"
-                    disabled>
-                    Login
-            </button>
+          <div class="row space-above">
+            <div class="form-group">
+              <div class="col-xs-4 text-right">
+                <label for="password"
+                        class="control-label">
+                        Password
+                </label>
+              </div>
+              <div class="col-xs-8">
+                <input type="password"
+                        id="password"
+                        formControlName="password"
+                        placeholder="Password">
+              </div>
+            </div>
           </div>
-          <div class="col-xs-6">
-            <button type="button"
-                    class="btn btn-primary"
-                    disabled>
-                    Register
-            </button>
+          <div class="row space-above">
+            <div class="col-xs-6">
+              <button type="submit"
+                      class="btn btn-success"
+                      disabled>
+                      Login
+              </button>
+            </div>
+            <div class="col-xs-6">
+              <button type="button"
+                      class="btn btn-primary"
+                      disabled>
+                      Register
+              </button>
+            </div>
+            <div class="row text-center">
+              <p>Click <a routerLink="/topics">here</a> to continue as guest.</p>
+            </div>
           </div>
-          <div class="row text-center">
-            <p>Click <a routerLink="/topics">here</a> to continue as guest.</p>
-          </div>
-        </div>
-
-      </form>
-
-    </div>
+        </form>
+      </div>
   </div>
 
 </div>

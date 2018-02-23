@@ -6,22 +6,22 @@
     <app-page-tracker [topicIndex]="topicIndex"
                       [subTopicIndex]="-1">
     </app-page-tracker>
-    <!-- <div class="row"> -->
 
     <div class="row">
       <h3>Contents of topic "{{ topicTitle }}" </h3>
       <br>
     </div>
 
-        <div class="topic-list"
-              *ngIf="subTopicsList.length>0">
-          <ol class="topic-listing">
-            <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
-                <strong><span class="topic-title"
-                      (click)="displaySubTopic(subTIndex)">
-                      {{ subTItem.title }}
-                </span></strong>
+    <div class="topic-list"
+          *ngIf="subTopicsList.length>0">
+      <ol class="topic-listing">
+        <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
+            <strong><span class="topic-title"
+                  (click)="displaySubTopic(subTIndex)">
+                  {{ subTItem.title }}
+            </span></strong>
 
+            <div class="list-container">
               <div class="row">
                 <p *ngIf="subTIndex===subTopicOnDisplay">
                   {{ subTItem.desc }}
@@ -31,7 +31,7 @@
               <div class="row space-above"
                     *ngIf="subTIndex===subTopicOnDisplay">
 
-                <div class="col-xs-4 subtopic-buttons">
+                <div class="col-xs-3 row-buttons">
                   <button type="button"
                           class="btn btn-primary general-button"
                           (click)="openSubTopic(subTIndex)">
@@ -39,7 +39,7 @@
                   </button>
                 </div>
 
-                <div class="col-xs-4  subtopic-buttons">
+                <div class="col-xs-3  row-buttons">
                   <button type="button"
                           class="btn btn-info general-button"
                           (click)="modifySubTopic(subTIndex)">
@@ -47,7 +47,7 @@
                   </button>
                 </div>
 
-                <div class="col-xs-4 subtopic-buttons">
+                <div class="col-xs-3 row-buttons">
                   <button type="button"
                           class="btn btn-danger general-button"
                           (click)="deleteSubTopic(subTIndex)">
@@ -61,118 +61,36 @@
                     style="color:red">{{ deleteMessage }}
                 </p>
               </div>
-            </li>
-          </ol>
-        </div>
-
-        <div class="row">
-          <h4 *ngIf="subTopicsList.length===0">
-            No subtopics to display.
-          </h4>
-          <br>
-        </div>
-
-        <div class="row">
-          <button type="button"
-                  class="btn btn-primary general-button"
-                  (click)="addNewSubTopic()"
-                  *ngIf="!addNewForm">
-                  Add new
-          </button>
-          <br>
-        </div>
-
-        <app-sub-topic-form [topicIndex]="topicIndex"
-                    (formSubmitted)="addNewForm=false; modifyStatus=false"
-                    [modifyStatus]="modifyStatus"
-                    [modifyIndex]="modifyIndex"
-                    *ngIf="addNewForm">
-        </app-sub-topic-form>
-
+            </div>
+        </li>
+      </ol>
     </div>
-</div>
 
-<app-footer></app-footer>
-
-
-
-
-<!-- <div class="front-page-enclosure">
-  <app-header></app-header>
-
-  <div class="main-content-box"
-        *ngIf="displayPage">
-    <app-page-tracker [topicIndex]="topicIndex"
-                      [subTopicIndex]="-1">
-    </app-page-tracker>
     <div class="row">
-
-        <h3>Contents of topic "{{ topicTitle }}" </h3>
-        <br>
-        <div class="topic-list"
-              *ngIf="subTopicsList.length>0">
-          <ol class="topic-listing">
-            <li *ngFor="let subTItem of subTopicsList; let subTIndex=index">
-              <strong><span class="topic-title"
-                    (click)="displaySubTopic(subTIndex)">
-                    {{ subTItem.title }}
-              </span></strong>
-
-              <p *ngIf="subTIndex===subTopicOnDisplay">
-                {{ subTItem.desc }}
-              </p>
-
-              <div class="space-above"
-                    *ngIf="subTIndex===subTopicOnDisplay">
-
-                <button type="button"
-                        class="btn btn-primary general-button"
-                        (click)="openSubTopic(subTIndex)">
-                        Open
-                </button>
-
-                <button type="button"
-                        class="btn btn-info general-button"
-                        (click)="modifySubTopic(subTIndex)">
-                        Modify
-                </button>
-
-                <button type="button"
-                        class="btn btn-danger general-button"
-                        (click)="deleteSubTopic(subTIndex)">
-                        Delete
-                </button>
-              </div>
-              <p *ngIf="deleteError&&deleteIndex===subTIndex"
-                  style="color:red">{{ deleteMessage }}
-              </p>
-
-            </li>
-          </ol>
-        </div>
-
-        <h4 *ngIf="subTopicsList.length===0">
-          No subtopics to display.
-        </h4>
-        <br>
-
-        <button type="button"
-                class="btn btn-primary general-button"
-                (click)="addNewSubTopic()"
-                *ngIf="!addNewForm">
-                Add new
-        </button>
-        <br>
-
-        <app-sub-topic-form [topicIndex]="topicIndex"
-                    (formSubmitted)="addNewForm=false; modifyStatus=false"
-                    [modifyStatus]="modifyStatus"
-                    [modifyIndex]="modifyIndex"
-                    *ngIf="addNewForm">
-        </app-sub-topic-form>
-
+      <h4 *ngIf="subTopicsList.length===0">
+        No subtopics to display.
+      </h4>
+      <br>
     </div>
+
+    <div class="row">
+      <button type="button"
+              class="btn btn-primary general-button"
+              (click)="addNewSubTopic()"
+              *ngIf="!addNewForm">
+              Add new
+      </button>
+      <br>
+    </div>
+
+    <app-sub-topic-form [topicIndex]="topicIndex"
+                (formSubmitted)="addNewForm=false; modifyStatus=false"
+                [modifyStatus]="modifyStatus"
+                [modifyIndex]="modifyIndex"
+                *ngIf="addNewForm">
+    </app-sub-topic-form>
+
   </div>
 </div>
 
-<app-footer></app-footer> -->
+<app-footer></app-footer>

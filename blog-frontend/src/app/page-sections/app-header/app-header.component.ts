@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
+  smallWindow: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    if (window.innerWidth < 467) {
+      this.smallWindow = true;
+    } else {
+      this.smallWindow = false;
+    }
   }
 
 }

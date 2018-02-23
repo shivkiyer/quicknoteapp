@@ -1,0 +1,183 @@
+<div class="front-page-enclosure">
+  <app-header></app-header>
+
+  <div class="main-content-box">
+    <div class="row text-center">
+      <h2>Access</h2>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <p class="large-size">To read notes compiled by other developers are released to public, you do not need to login and can continue as a guest (click <a routerLink="/topics">here</a>). However, to create notes of your own or be invited to projects, you will need to register and login.</p>
+    </div>
+
+    <br>
+
+    <div class="login-block">
+      <form [formGroup]="userForm" (ngSubmit)="onLogin()">
+          <div class="row">
+            <div class="form-group">
+              <div class="col-xs-4 text-right">
+                <label for="username"
+                        class="control-label">
+                        Username
+                </label>
+              </div>
+              <div class="col-xs-8">
+                <input type="text"
+                        id="username"
+                        formControlName="username"
+                        placeholder="Username">
+              </div>
+            </div>
+          </div>
+          <div class="row space-above">
+            <div class="form-group">
+              <div class="col-xs-4 text-right">
+                <label for="password"
+                        class="control-label">
+                        Password
+                </label>
+              </div>
+              <div class="col-xs-8">
+                <input type="password"
+                        id="password"
+                        formControlName="password"
+                        placeholder="Password">
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row space-above">
+            <div class="col-xs-6 col-xs-offset-3">
+              <button type="submit"
+                      class="btn btn-success"
+                      disabled>
+                      Login
+              </button>
+            </div>
+            <!-- <div class="col-xs-6">
+              <button type="button"
+                      class="btn btn-primary"
+                      disabled>
+                      Register
+              </button>
+            </div> -->
+          </div>
+          <div class="row text-center">
+            <p>Click <a routerLink="/topics">here</a> to continue as guest.</p>
+          </div>
+      </form>
+    </div>
+
+    <br><br>
+
+    <div class="row text-center">
+      <h3>Registration</h3>
+    </div>
+
+    <p class="large-size">Just a few details to get you going. IMPORTANT: Do not choose a very strong password or a critical password that you use for work. This site is in development and there is no guarantee to keep your password safe.</p>
+
+    <br>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="resisterUser()">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="username"
+                    class="control-label">
+                    Username
+            </label>
+          </div>
+
+          <div class="col-sm-6">
+            <input type="text"
+                    formControlName="username"
+                    id="username"
+                    class="form-control"
+                    placeholder="Username">
+
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="email"
+                    class="control-label">
+                    Email
+            </label>
+          </div>
+
+          <div class="col-sm-6">
+            <input type="email"
+                    formControlName="email"
+                    id="email"
+                    class="form-control"
+                    placeholder="Email">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="password"
+                    class="control-label">
+                    Password
+            </label>
+          </div>
+
+          <div class="col-sm-6">
+            <input type="password"
+                    formControlName="password"
+                    id="password"
+                    class="form-control"
+                    placeholder="Password">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-2">
+            <label for="repeatpassword"
+                    class="control-label">
+                    Repeat password
+            </label>
+          </div>
+
+          <div class="col-sm-6">
+            <input type="password"
+                    formControlName="repeatpassword"
+                    id="repeatpassword"
+                    class="form-control"
+                    placeholder="Repeat password">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-3 col-xs-offset-2">
+          <button type="submit"
+                  class="btn btn-primary"
+                  disabled>
+                  Register
+          </button>
+        </div>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+
+<app-footer></app-footer>

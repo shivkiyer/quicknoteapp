@@ -2,71 +2,90 @@
   <app-header></app-header>
 
   <div class="main-content-box">
-    <div class="row">
-      <!-- <div class="col-xs-12 "> -->
+      <div class="row">
         <h2 class="url-link"
             (click)="viewTopics()">
             View archived topics
         </h2>
+      </div>
 
         <div class="topic-list">
           <ol class="topic-listing"
               *ngIf="topicList.length>0&&displaySub">
-            <li *ngFor="let topic of topicList; let topicIndex = index">
-              <strong><span class="topic-title" (click)="displayTopic(topicIndex)">
-                {{ topic.title }}
-              </span></strong>
-              <p *ngIf="topicIndex===topicOnDisplay">
-                {{ topic.desc }} <br>
-              </p>
-              <div *ngIf="topicIndex===topicOnDisplay" class="space-above">
-                <button type="button"
-                        class="btn btn-primary general-button"
-                        (click)="openTopic(topicIndex)">
-                        Open
-                </button>
-                <button type="button"
-                        class="btn btn-info general-button"
-                        (click)="modifyTopic(topicIndex)">
-                        Modify
-                </button>
-                <button type="button"
-                        class="btn btn-danger general-button"
-                        (click)="deleteTopic(topicIndex)">
-                        Delete
-                </button>
-              </div>
-              <p *ngIf="deleteError&&deleteIndex===topicIndex"
-                  style="color:red">
-                  {{ deleteMessage }}
-              </p>
 
+            <li *ngFor="let topic of topicList; let topicIndex = index">
+                <strong><span class="topic-title" (click)="displayTopic(topicIndex)">
+                  {{ topic.title }}
+                </span></strong>
+
+                <div class="list-container">
+                  <div class="row">
+                    <p *ngIf="topicIndex===topicOnDisplay">
+                      {{ topic.desc }} <br>
+                    </p>
+                  </div>
+
+                  <div *ngIf="topicIndex===topicOnDisplay" class="space-above">
+                    <div class="row">
+                      <div class="col-md-2 col-xs-3 row-buttons">
+                        <button type="button"
+                                class="btn btn-primary general-button"
+                                (click)="openTopic(topicIndex)">
+                                Open
+                        </button>
+                      </div>
+                      <div class="col-md-2 col-xs-3 row-buttons">
+                        <button type="button"
+                                class="btn btn-info general-button"
+                                (click)="modifyTopic(topicIndex)">
+                                Modify
+                        </button>
+                      </div>
+                      <div class="col-md-2 col-xs-3 row-buttons">
+                        <button type="button"
+                                class="btn btn-danger general-button"
+                                (click)="deleteTopic(topicIndex)">
+                                Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <p *ngIf="deleteError&&deleteIndex===topicIndex"
+                        style="color:red">
+                        {{ deleteMessage }}
+                    </p>
+                  </div>
+                </div>
             </li>
           </ol>
         </div>
 
-        <p class="topic-message"
-            *ngIf="topicList.length===0&&displaySub">
-            No topics to display.
-        </p>
+        <div class="row">
+          <p class="topic-message"
+              *ngIf="topicList.length===0&&displaySub">
+              No topics to display.
+          </p>
+        </div>
 
         <br>
-        <button class="btn btn-primary general-button"
-                type="button"
-                name="add-topic"
-                (click)=addNewTopic()
-                *ngIf="!newTopic">
-                Add topic
-        </button>
+
+        <div class="row">
+          <button class="btn btn-primary general-button"
+                  type="button"
+                  name="add-topic"
+                  (click)=addNewTopic()
+                  *ngIf="!newTopic">
+                  Add topic
+          </button>
+        </div>
 
         <app-topic-form *ngIf="newTopic"
                         (formSubmitted)="newTopic=false; modifyStatus=false"
                         [modifyStatus]="modifyStatus"
                         [modifyIndex]="modifyIndex">
         </app-topic-form>
-      <!-- </div> -->
 
-    </div>
   </div>
 </div>
 

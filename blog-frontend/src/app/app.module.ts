@@ -19,6 +19,9 @@ import { NoteService } from './shared/note.service';
 import { AppHeaderComponent } from './page-sections/app-header/app-header.component';
 import { AppFooterComponent } from './page-sections/app-footer/app-footer.component';
 import { PageTrackerComponent } from './page-sections/page-tracker/page-tracker.component';
+import { AboutPageComponent } from './about-page/about-page.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
+import { LoginRegisterComponent } from './login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { PageTrackerComponent } from './page-sections/page-tracker/page-tracker.
     NoteFormComponent,
     AppHeaderComponent,
     AppFooterComponent,
-    PageTrackerComponent
+    PageTrackerComponent,
+    AboutPageComponent,
+    ContactPageComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,

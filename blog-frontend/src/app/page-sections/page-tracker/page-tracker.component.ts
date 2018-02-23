@@ -18,16 +18,20 @@ export class PageTrackerComponent implements OnInit {
   subTopicDisplay: string;
   showTopic = false;
   showSubTopic = false;
+  noOfCharacters = 7;
 
   constructor(private topicsService: TopicsService,
               private subTopicsService: SubTopicsService,
               private router: Router) { }
 
   ngOnInit() {
+    if (window.innerWidth < 500) {
+      this.noOfCharacters = 4;
+    }
     if (this.topicIndex>-1) {
       this.topicTitle = this.topicsService.topicList[this.topicIndex].title;
-      if (this.topicTitle.length>10) {
-        this.topicDisplay = this.topicTitle.slice(0,7) + '...';
+      if (this.topicTitle.length > this.noOfCharacters+3) {
+        this.topicDisplay = this.topicTitle.slice(0,this.noOfCharacters) + '...';
       } else {
         this.topicDisplay = this.topicTitle;
       }
@@ -38,8 +42,8 @@ export class PageTrackerComponent implements OnInit {
 
     if (this.subTopicIndex>-1) {
       this.subTopicTitle = this.subTopicsService.subTopicsList[this.subTopicIndex].title;
-      if (this.subTopicTitle.length>10) {
-        this.subTopicDisplay = this.subTopicTitle.slice(0,7) + '...';
+      if (this.subTopicTitle.length > this.noOfCharacters+3) {
+        this.subTopicDisplay = this.subTopicTitle.slice(0,this.noOfCharacters) + '...';
       } else {
         this.subTopicDisplay = this.subTopicTitle;
       }

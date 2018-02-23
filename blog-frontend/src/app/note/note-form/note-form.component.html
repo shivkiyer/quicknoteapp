@@ -5,14 +5,14 @@
   <div class="form-group">
     <div class="row">
 
-      <div class="col-md-2 text-right">
+      <div class="col-sm-2 text-right">
         <label for="title"
                 class="control-label">
                 Title:
         </label>
       </div>
 
-      <div class="col-md-10">
+      <div class="col-sm-10">
         <textarea name="title"
                   id="title"
                   formControlName="title"
@@ -29,70 +29,71 @@
 
     <div class="form-group">
       <div class="row">
+          <div class="col-sm-2 label-align">
+            <div *ngIf="formKeys[itemIndex]==='text'">
+              <label [for]="formContents[itemIndex]"
+                      class="control-label">
+                      Note text:
+              </label>
+            </div>
 
-
-        <div class="col-md-2 label-align">
-          <div *ngIf="formKeys[itemIndex]==='text'">
-            <label [for]="formContents[itemIndex]"
-                    class="control-label">
-                    Note text:
-            </label>
+            <div *ngIf="formKeys[itemIndex]==='code'">
+              <label [for]="formContents[itemIndex]"
+                      class="control-label">
+                      Code:
+              </label>
+            </div>
           </div>
 
-          <div *ngIf="formKeys[itemIndex]==='code'">
-            <label [for]="formContents[itemIndex]"
-                    class="control-label">
-                    Code:
-            </label>
-          </div>
-        </div>
+          <div class="col-sm-10">
+            <div *ngIf="formKeys[itemIndex]==='text'">
+              <textarea [id]="formContents[itemIndex]"
+                        rows="8" cols="80"
+                        [formControlName]="formContents[itemIndex]"
+                        placeholder="Note text">
+              </textarea>
+            </div>
 
-        <div class="col-md-10">
-          <div *ngIf="formKeys[itemIndex]==='text'">
-            <textarea [id]="formContents[itemIndex]"
-                      rows="8" cols="80"
-                      [formControlName]="formContents[itemIndex]"
-                      placeholder="Note text">
-            </textarea>
+            <div *ngIf="formKeys[itemIndex]==='code'">
+              <textarea [id]="formContents[itemIndex]"
+                        rows="8" cols="80"
+                        [formControlName]="formContents[itemIndex]"
+                        placeholder="Code segment">
+              </textarea>
+            </div>
+            <button type="button"
+                    class="btn btn-danger general-button"
+                    (click)="deleteContent(itemIndex)">
+                    Delete
+            </button>
+            Click here to delete the above input.
           </div>
-
-          <div *ngIf="formKeys[itemIndex]==='code'">
-            <textarea [id]="formContents[itemIndex]"
-                      rows="8" cols="80"
-                      [formControlName]="formContents[itemIndex]"
-                      placeholder="Code segment">
-            </textarea>
-          </div>
-          <button type="button"
-                  class="btn btn-danger general-button"
-                  (click)="deleteContent(itemIndex)">
-                  Delete
-          </button>
-          Click here to delete the above input.
-        </div>
-
       </div>
     </div>
 
   </div>
 
-  <div class="note-button-block">
-    <div class="row">
-      <div class="col-md-12">
-        <br>
-        To add more inputs, click on the buttons below. <br>
-        <button type="button"
-                class="btn btn-primary general-button"
-                (click)="addText()">
-                Add text
-        </button>
 
-        <button type="button"
-                class="btn btn-primary general-button"
-                (click)="addCode()">
-                Add code
-        </button>
-      </div>
+  <div class="row">
+    <div class="col-md-offset-3">
+      <br>
+      To add more inputs, click on the buttons below.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-offset-3">
+      <button type="button"
+              class="btn btn-primary general-button"
+              (click)="addText()">
+              Add text
+      </button>
+
+      <button type="button"
+              class="btn btn-primary general-button"
+              (click)="addCode()">
+              Add code
+      </button>
     </div>
   </div>
 

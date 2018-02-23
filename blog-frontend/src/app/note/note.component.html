@@ -7,13 +7,12 @@
                       [subTopicIndex]="subTopicIndex">
     </app-page-tracker>
 
-    <div class="row"
-          *ngIf="!newForm">
+    <div *ngIf="!newForm">
 
-      <div class="col-md-12">
-
-        <h3>List of notes in "{{ subTopicTitle }}" within "{{ topicTitle }}":</h3>
-        <br>
+        <div class="row">
+          <h3>List of notes in "{{ subTopicTitle }}" within "{{ topicTitle }}":</h3>
+          <br>
+        </div>
 
         <div *ngIf="noteList&&noteList.length>0">
           <ol class="topic-listing">
@@ -22,39 +21,37 @@
                     (click)="displayNote(noteIndex)">
                 {{ noteItem.title }}
               </span></strong>
-              <div class="note-display-box"
+              <div class="list-container"
                     *ngIf="noteIndex===indexDisplay">
+
                   <div class="row"
                         *ngIf='!newForm&&noteDisplay'>
-
-                    <div class="col-md-12">
-                        <div *ngFor="let noteContent of noteList[indexDisplay].contents">
-                          <div *ngIf="noteContent.itemType==='code'">
-                            <pre>{{ noteContent.itemData }}</pre>
-                          </div>
-                          <div *ngIf="noteContent.itemType==='text'">
-                            <p>{{ noteContent.itemData }}</p>
-                          </div>
+                      <div *ngFor="let noteContent of noteList[indexDisplay].contents">
+                        <div *ngIf="noteContent.itemType==='code'">
+                          <pre>{{ noteContent.itemData }}</pre>
                         </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-xs-6">
-                        <button type="button"
-                                class="btn btn-primary general-button"
-                                (click)="modifyNote(noteIndex)">
-                                Modify
-                        </button>
+                        <div *ngIf="noteContent.itemType==='text'">
+                          <p>{{ noteContent.itemData }}</p>
+                        </div>
                       </div>
-                      <div class="col-xs-6">
-                        <button type="button"
-                                class="btn btn-danger general-button"
-                                (click)="deleteNote(noteIndex)">
-                                Delete
-                        </button>
-                      </div>
-                    </div>
+                  </div>
 
+                  <div class="row"
+                        *ngIf="noteDisplay">
+                    <div class="col-xs-6">
+                      <button type="button"
+                              class="btn btn-primary general-button"
+                              (click)="modifyNote(noteIndex)">
+                              Modify
+                      </button>
+                    </div>
+                    <div class="col-xs-6">
+                      <button type="button"
+                              class="btn btn-danger general-button"
+                              (click)="deleteNote(noteIndex)">
+                              Delete
+                      </button>
+                    </div>
                   </div>
               </div>
             </li>
@@ -71,8 +68,6 @@
                 (click)="newNote()">
                 Add new
         </button>
-
-      </div>
 
     </div>
 
