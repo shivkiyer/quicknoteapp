@@ -5,7 +5,7 @@ var expressSettings = (express, app) => {
   var mode;
   var configSettings = {};
 
-  var htmlPATH = path.join(path.join(path.dirname(path.dirname(__dirname)), 'frontend'), 'dist');
+  var htmlPATH = path.join(path.join(path.dirname(path.dirname(__dirname)), 'blog-frontend'), 'dist');
   app.use(express.static(htmlPATH));
   app.set('views', htmlPATH);
 
@@ -26,7 +26,7 @@ var expressSettings = (express, app) => {
       res.setHeader('Access-Control-Allow-Credentials', true);
       next();
     });
-    configSettings['port'] = 3000;
+    configSettings['port'] = 4200;
   } else {
     configSettings['port'] = process.env.PORT;
   }
