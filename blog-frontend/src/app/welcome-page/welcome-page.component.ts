@@ -20,4 +20,8 @@ export class WelcomePageComponent implements OnInit {
     });
   }
 
+  onLogin() {
+
+  }
+
 }

@@ -75,7 +75,7 @@ export class NoteFormComponent implements OnInit {
     }
   }
 
-  addText(textValue: any) {
+  addText(textValue?: any) {
     this.formKeys.push('text');
     var textKey = 'text' + this.formContentIndex;
     this.formContents.push(textKey);
@@ -93,7 +93,7 @@ export class NoteFormComponent implements OnInit {
     this.formContentIndex += 1;
   }
 
-  addCode(codeValue: any) {
+  addCode(codeValue?: any) {
     this.formKeys.push('code');
     var codeKey = 'code' + this.formContentIndex;
     this.formContents.push(codeKey);

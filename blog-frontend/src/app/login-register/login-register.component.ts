@@ -27,4 +27,12 @@ export class LoginRegisterComponent implements OnInit {
     });
   }
 
+  onLogin() {
+
+  }
+
+  registerUser() {
+
+  }
+
 }
